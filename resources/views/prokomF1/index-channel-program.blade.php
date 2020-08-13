@@ -9,7 +9,7 @@
 
         <div class="section-body">
             <div class="title m-b-md">
-                <a href="{{ route('prokomF1-tambah-jenis-program') }}" class="btn btn-info">Tambah Data</a>
+                <a href="{{ route('prokomF1-tambah-channel-program') }}" class="btn btn-info">Tambah Data</a>
                 <table class="table table-striped table-bordered">
                     <tr>
                         <th>NO.</th>

@@ -1,15 +1,15 @@
 @extends('layouts.master')
-@section('title', 'Mekanisme Klaim')
+@section('title', 'Metode Klaim')
 
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>List Mekanisme Klaim </h1>
+            <h1>List Metode Klaim </h1>
         </div>
 
         <div class="section-body">
             <div class="title m-b-md">
-                <a href="{{ route('prokomF1-tambah-mekanisme-klaim') }}" class="btn btn-info">Tambah Data</a>
+                <a href="{{ route('prokomF1-tambah-metode-klaim') }}" class="btn btn-info">Tambah Data</a>
                 <table class="table table-striped table-bordered">
                     <tr>
                         <th>NO.</th>

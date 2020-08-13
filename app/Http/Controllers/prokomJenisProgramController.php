@@ -22,7 +22,7 @@ class prokomJenisProgramController extends Controller
     public function simpan(Request $request){
         DB::insert('insert into prokomf1 (kepada_yth, di_ketahui, nama_program) values (?, ?,?)', [$request->kepada_yth, $request->di_ketahui, $request->nama_program]);
         // dd($request->all());
-        return redirect()->route('prokomF1.index-jenis-program');
+        return redirect('/home')->with('Channel program ditambahkan');
         //setelah simpan berhasil redirect ke input mekanisme program
     }
 }

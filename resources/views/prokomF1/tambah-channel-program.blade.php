@@ -18,13 +18,13 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Nama Channel Program</label>
+                                        <label>Nama Channel Program *</label>
                                         <input type="text" placeholder="Input Nama Channel Program" name="kepada_yth" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Kode/singkatan Channel Program</label>
+                                        <label>Kode/singkatan Channel Program *</label>
                                         <input type="text" placeholder="Kode/singkatan Channel Program" name="kepada_yth" class="form-control">
                                     </div>
                                 </div>
