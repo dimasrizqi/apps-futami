@@ -58,6 +58,12 @@ Route::post('prokom/metodeklaim/simpan', 'prokomMetodeKlaimController@simpan' ) 
 Route::get('crud', 'CrudController@index' ) -> name('crud-index');
 Route::get('crud/tambah', 'CrudController@tambah' ) -> name('crud-tambah');
 Route::post('crud/simpan', 'CrudController@simpan' ) -> name('crud-simpan');
+//test login
+Route::get('/login', 'otentikasi\OtentikasiController@index' ) -> name('login');
+Route::post('/login', 'otentikasi\OtentikasiController@login' ) -> name('login');
+
+
+
 
 
 
