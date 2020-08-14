@@ -5,15 +5,13 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
   <title>@yield('title') - Apps Futami </title>
 
-  <!-- General CSS Files -->
   <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  {{-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> --}}
-  <link rel="stylesheet" href="{{ asset('assets/css//all.css') }}" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="{{ asset('assets/css/all.css') }}" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
-  <!-- CSS Libraries -->
+  {{-- CSS Libraries --}}
   @yield('page-styles')
 
-  <!-- Template CSS -->
+  {{-- Template CSS  --}}
   <link rel="stylesheet" href="{{ asset('assets/css/style.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/css/components.css')}}">
 </head>
@@ -24,7 +22,7 @@
       @include('layouts.header')
       @include('layouts.sidebar')
 
-      <!-- Main Content -->
+      {{-- Main Content  --}}
       <div class="main-content">
         
         @yield('content')
@@ -33,7 +31,7 @@
       <footer class="main-footer">
         <div class="footer-left">
             Futami Food & Beverages &copy; {{ date('Y') }} 
-            {{-- </div> Design By <a href="https://www.instagram.com/dimasrizqi">RADJA RIZQI RAMADHAN </a> --}}
+              <!-- </div> Design By <a href="https://www.instagram.com/dimasrizqi">RADJA RIZQI RAMADHAN </a>  -->
         </div>
         
       </footer>
@@ -48,13 +46,13 @@
   <script src="{{ asset('assets/js/moment.min.js')}}"></script>
   <script src="{{ asset('assets/js/stisla.js')}}"></script>
 
-  <!-- JS Libraies -->
+  {{-- JS Libraies --}}
 
-  <!-- Template JS File -->
+  {{-- Template JS File  --}}
   <script src="{{ asset('assets/js/scripts.js')}}"></script>
   <script src="{{ asset('assets/js/custom.js')}}"></script>
 
-  <!-- Page Specific JS File -->
+   {{-- Page Specific JS File  --}}
   @stack('page-scripts')
 </body>
 </html>
