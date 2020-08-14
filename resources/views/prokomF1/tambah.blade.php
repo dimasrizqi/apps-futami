@@ -20,6 +20,12 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
+                                        <label>Tanggal Diajukan : </label>
+                                        <label>{{ date('d F Y')}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
                                         <label>* Kepada Yth:</label>
                                         <input type="text" name="kepada_yth" class="form-control">
                                     </div>
@@ -33,7 +39,17 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>* Nomor Proposal</label>
-                                        <input type="text" name="nomor_proposal" class="form-control">
+                                        <input type="text" name="nomor_proposal" class="form-control">                        
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>* Jenis Program</label>
+                                        <select class="form-control" name="jenis_program" id="channel_program">
+                                            <option>Jenis 1</option>
+                                            <option>jenis 2</option>
+                                            <option>jenis 3</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-md-12">

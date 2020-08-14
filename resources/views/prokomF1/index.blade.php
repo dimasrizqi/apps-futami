@@ -10,9 +10,9 @@
     <div class="section-body">
       <div class="title m-b-md">
       <a href="{{ route('prokomF1-tambah') }}" class="btn btn-info">Tambah Data</a>
-      <table class="table table-striped table-bordered">
+      <table class="table table-striped table-bordered table-sm">
         <tr>
-          <th>NO.</th>
+          <th width="50px">NO.</th>
           <th>No Proposal</th>
           <th>Nama Program</th>
           <th>Action</th>
