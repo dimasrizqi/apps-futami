@@ -22,8 +22,9 @@
           <td> {{$no+1}} </td>
           <td>{{$datanya -> nomor_proposal}}</td>
           <td>{{$datanya -> nama_program}}</td>
-          <td><a href="#" class="btn btn-success">Detail Data</a>
-          <a href="#" class="btn btn-warning">Hapus Data</a></td>
+          <td><a href=" {{ route('prokomF1-index')}}/{{$datanya -> id }}" class="badge badge-success">Detail</a>
+          <a href="#" class="badge badge-warning">Hapus</a>
+          <a href="#" class="badge badge-info">Print</a></td>
         </tr>
         @endforeach
       </table>

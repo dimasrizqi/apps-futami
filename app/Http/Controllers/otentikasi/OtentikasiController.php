@@ -22,5 +22,6 @@ class OtentikasiController extends Controller
                 return redirect('/home');
             }
         }
+        return redirect('/')->with('message',"Email atau Password salah!!!");
     }
 }

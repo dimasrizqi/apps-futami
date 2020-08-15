@@ -27,11 +27,15 @@ Route::get('/home', function () {
 // Route::get('/prokom', function () {
 //     return view('prokoms.index');
 // });
+//test login
+Route::get('/login', 'otentikasi\OtentikasiController@index' ) -> name('login');
+Route::post('/login', 'otentikasi\OtentikasiController@login' ) ;
 
 //prokom form F1
 Route::get('prokom', 'prokomController@index' ) -> name('prokomF1-index');
 Route::get('prokom/tambah', 'prokomController@tambah' ) -> name('prokomF1-tambah');
 Route::post('prokom/simpan', 'prokomController@simpan' ) -> name('prokomF1-simpan');
+Route::post('prokom/update', 'prokomController@update' ) -> name('prokomF1-update');
 
 //prokom form jenis program
 Route::get('prokom/jenisprogram/', 'prokomJenisProgramController@index' ) -> name('prokomF1-index-jenis-program');
@@ -51,19 +55,19 @@ Route::get('prokom/metodeklaim/tambah', 'prokomMetodeKlaimController@tambah' ) -
 Route::post('prokom/metodeklaim/simpan', 'prokomMetodeKlaimController@simpan' ) -> name('prokomF1-simpan-metode-klaim');
 
 // Route::get('prokom/printProkom', function () {
-//     return view('formProkom/printProkom');
-// });
-
-//test crud
-Route::get('crud', 'CrudController@index' ) -> name('crud-index');
-Route::get('crud/tambah', 'CrudController@tambah' ) -> name('crud-tambah');
-Route::post('crud/simpan', 'CrudController@simpan' ) -> name('crud-simpan');
-//test login
-Route::get('/login', 'otentikasi\OtentikasiController@index' ) -> name('login');
-Route::post('/login', 'otentikasi\OtentikasiController@login' ) -> name('login');
-
-
-
-
-
-
+    //     return view('formProkom/printProkom');
+    // });
+    
+    //test crud
+    Route::get('crud', 'CrudController@index' ) -> name('crud-index');
+    Route::get('crud/tambah', 'CrudController@tambah' ) -> name('crud-tambah');
+    Route::post('crud/simpan', 'CrudController@simpan' ) -> name('crud-simpan');
+    
+    
+    
+    //prokom view with get id
+    Route::get('prokom/{id}', 'prokomController@indexId' ) -> name('prokomF1-index-id');
+    
+    
+    
+    
