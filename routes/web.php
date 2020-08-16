@@ -13,60 +13,66 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//give blank page
+// give blank page
 Route::get('/', function () {
     return 'opps...';
 });
 
 //home dashboard
-Route::get('/home', function () {
-    return view('home');
-});
+// Route::get('/home', function () {
+//       return view('home');
+// });
 
 //index prokom feature
 // Route::get('/prokom', function () {
 //     return view('prokoms.index');
 // });
 //test login
-Route::get('/login', 'otentikasi\OtentikasiController@index' ) -> name('login');
-Route::post('/login', 'otentikasi\OtentikasiController@login' ) ;
-
-//prokom form F1
-Route::get('prokom', 'prokomController@index' ) -> name('prokomF1-index');
-Route::get('prokom/tambah', 'prokomController@tambah' ) -> name('prokomF1-tambah');
-Route::post('prokom/simpan', 'prokomController@simpan' ) -> name('prokomF1-simpan');
-Route::post('prokom/update', 'prokomController@update' ) -> name('prokomF1-update');
-
-//prokom form jenis program
-Route::get('prokom/jenisprogram/', 'prokomJenisProgramController@index' ) -> name('prokomF1-index-jenis-program');
-Route::get('prokom/jenisprogram/tambah', 'prokomJenisProgramController@tambah' ) -> name('prokomF1-tambah-jenis-program');
-Route::post('prokom/jenisprogram/simpan', 'prokomJenisProgramController@simpan' ) -> name('prokomF1-simpan-jenis-program');
-
-
-//prokom form channel program
-Route::get('prokom/channelprogram/', 'prokomChannelController@index' ) -> name('prokomF1-index-channel-program');
-Route::get('prokom/channelprogram/tambah', 'prokomChannelController@tambah' ) -> name('prokomF1-tambah-channel-program');
-Route::post('prokom/channelprogram/simpan', 'prokomChannelController@simpan' ) -> name('prokomF1-simpan-channel-program');
-
-
-//prokom form metode klaim
-Route::get('prokom/metodeklaim/', 'prokomMetodeKlaimController@index' ) -> name('prokomF1-index-metode-klaim');
-Route::get('prokom/metodeklaim/tambah', 'prokomMetodeKlaimController@tambah' ) -> name('prokomF1-tambah-metode-klaim');
-Route::post('prokom/metodeklaim/simpan', 'prokomMetodeKlaimController@simpan' ) -> name('prokomF1-simpan-metode-klaim');
+Route::get('/login', 'otentikasi\OtentikasiController@index' )-> name('login') ;
+Route::post('/login', 'otentikasi\OtentikasiController@login') -> name('login');
+Route::get('/logout', 'otentikasi\OtentikasiController@logout') -> name('logout');
 
 // Route::get('prokom/printProkom', function () {
     //     return view('formProkom/printProkom');
     // });
+
+//login group midleware
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/home', function () {
+        return view('home');
+    });
+
     
-    //test crud
-    Route::get('crud', 'CrudController@index' ) -> name('crud-index');
-    Route::get('crud/tambah', 'CrudController@tambah' ) -> name('crud-tambah');
-    Route::post('crud/simpan', 'CrudController@simpan' ) -> name('crud-simpan');
-    
-    
-    
+    //prokom form F1
+    Route::get('prokom', 'prokomController@index' ) -> name('prokomF1-index');
+    Route::get('prokom/tambah', 'prokomController@tambah' ) -> name('prokomF1-tambah');
+    Route::post('prokom/simpan', 'prokomController@simpan' ) -> name('prokomF1-simpan');
+    Route::post('prokom/update', 'prokomController@update' ) -> name('prokomF1-update');
+
+    //prokom form jenis program
+    Route::get('prokom/jenisprogram/', 'prokomJenisProgramController@index' ) -> name('prokomF1-index-jenis-program');
+    Route::get('prokom/jenisprogram/tambah', 'prokomJenisProgramController@tambah' ) -> name('prokomF1-tambah-jenis-program');
+    Route::post('prokom/jenisprogram/simpan', 'prokomJenisProgramController@simpan' ) -> name('prokomF1-simpan-jenis-program');
+
+
+    //prokom form channel program
+    Route::get('prokom/channelprogram/', 'prokomChannelController@index' ) -> name('prokomF1-index-channel-program');
+    Route::get('prokom/channelprogram/tambah', 'prokomChannelController@tambah' ) -> name('prokomF1-tambah-channel-program');
+    Route::post('prokom/channelprogram/simpan', 'prokomChannelController@simpan' ) -> name('prokomF1-simpan-channel-program');
+
+
+    //prokom form metode klaim
+    Route::get('prokom/metodeklaim/', 'prokomMetodeKlaimController@index' ) -> name('prokomF1-index-metode-klaim');
+    Route::get('prokom/metodeklaim/tambah', 'prokomMetodeKlaimController@tambah' ) -> name('prokomF1-tambah-metode-klaim');
+    Route::post('prokom/metodeklaim/simpan', 'prokomMetodeKlaimController@simpan' ) -> name('prokomF1-simpan-metode-klaim');
+
     //prokom view with get id
-    Route::get('prokom/{id}', 'prokomController@indexId' ) -> name('prokomF1-index-id');
+    Route::get('prokom/{id}', 'prokomController@detail' ) -> name('prokomF1-detail');
+        
+});
+
+
+
     
     
     

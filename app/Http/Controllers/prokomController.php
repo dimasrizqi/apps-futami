@@ -14,7 +14,7 @@ class prokomController extends Controller
         
     }
 
-    public function indexId(Request $request){
+    public function detail(Request $request){
         $data_prokomf1 = DB::table('prokomf1')->where('id',$request->id)->get();
         return view('prokomF1.detail',['data_prokomf1' => $data_prokomf1]);
         //dd($request->id);

@@ -14,7 +14,7 @@
 
                     <form action="{{ route('prokomF1-simpan') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="revisi_ke" value="revisi_ke_0">
+                        <input type="hidden" name="revisi_ke" value="0">
                         <input type="hidden" name="disiapkan_oleh" value="admin">
                         <div class="card-body">
                             <div class="row">
@@ -87,7 +87,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Start Program</label>
-                                        <input type="date" id="periode_program_start" name="periode_program_start"
+                                        <input type="date"  id="periode_program_start" name="periode_program_start"
                                             class="form-control">
                                     </div>
                                 </div>

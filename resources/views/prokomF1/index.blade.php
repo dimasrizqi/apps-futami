@@ -22,8 +22,11 @@
           <td> {{$no+1}} </td>
           <td>{{$datanya -> nomor_proposal}}</td>
           <td>{{$datanya -> nama_program}}</td>
-          <td><a href=" {{ route('prokomF1-index')}}/{{$datanya -> id }}" class="badge badge-success">Detail</a>
-          <a href="#" class="badge badge-warning">Hapus</a>
+          <td><a href=" {{ route('prokomF1-index')}}/{{$datanya -> id }}" class="badge badge-success">update</a>
+            @if ($message = Session::get('grupnya')=="1")
+            <a href="#" class="badge badge-danger">Hapus</a>
+            @endif
+          
           <a href="#" class="badge badge-info">Print</a></td>
         </tr>
         @endforeach
