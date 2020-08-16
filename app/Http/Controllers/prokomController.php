@@ -19,12 +19,21 @@ class prokomController extends Controller
         return view('prokomF1.detail',['data_prokomf1' => $data_prokomf1]);
         //dd($request->id);
     }
+
+    public function print(Request $request){
+        $data_prokomf1 = DB::table('prokomf1')->where('id',$request->id)->get();
+        return view('prokomF1.formProkom.printProkom',['data_prokomf1' => $data_prokomf1]);
+        //dd($request->id);
+    }
     
     public function tambah(){
         return view('prokomF1.tambah');
     }
 
     public function update(Request $request){
+        dd($request->all());
+    }
+    public function hapus(Request $request){
         dd($request->all());
     }
 
