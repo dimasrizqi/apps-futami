@@ -52,7 +52,7 @@
   <script src="{{ asset('assets/js/scripts.js')}}"></script>
   <script src="{{ asset('assets/js/custom.js')}}"></script>
 
-   {{-- Page Specific JS File  --}}
+   <!-- Page Specific JS File  -->
   @stack('page-scripts')
 </body>
 </html>

@@ -14,14 +14,16 @@
 
                     <form action="{{ route('prokomF1-simpan') }}" method="POST">
                         @csrf
-                        <input type="hidden" name="revisi_ke" value="0">
-                        <input type="hidden" name="disiapkan_oleh" value="admin">
+                        <input type="hidden" name="disiapkan_oleh" value="@if ($message = Session::get('id_user'))
+                        {{ $message }}
+                        @endif">
+                        <input type="hidden" name="status" value="1">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Tanggal Diajukan : </label>
-                                        <label>{{ date('d F Y')}}</label>
+                                        <label>{{ date('d F Y') }}</label>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -39,16 +41,22 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>* Nomor Proposal</label>
-                                        <input type="text" name="nomor_proposal" class="form-control">                        
+                                        <input type="text" name="nomor_proposal" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>* Jenis Program</label>
-                                        <select class="form-control" name="jenis_program" id="channel_program">
-                                            <option>Jenis 1</option>
-                                            <option>jenis 2</option>
-                                            <option>jenis 3</option>
+                                        <label>* Jenis Program</label><br>
+                                        <select class="form-control" name="jenis_program" id="jenis_program">
+                                            <option value=""></option> 
+                                            @foreach ($data_jenis_program as $item)
+                                                {{-- <input type="radio" name="jenis_program"
+                                                    id="{{ $item->jenis_program }}"
+                                                    value="{{ $item->jenis_program }}">{{ $item->jenis_program }}<br>
+                                                --}}
+
+                                                <option value="{{ $item->id }}"> {{ $item->jenis_program }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -87,7 +95,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Start Program</label>
-                                        <input type="date"  id="periode_program_start" name="periode_program_start"
+                                        <input type="date" id="periode_program_start" name="periode_program_start"
                                             class="form-control">
                                     </div>
                                 </div>
@@ -117,9 +125,17 @@
                                     <div class="form-group">
                                         <label>Channel Program</label>
                                         <select class="form-control" name="channel_program" id="channel_program">
-                                            <option>Option 1</option>
-                                            <option>Option 2</option>
-                                            <option>Option 3</option>
+                                            {{-- <option>Option 1</option>
+                                            <option>Option 2</option>--}}
+                                            <option value=""></option> 
+                                            @foreach ($data_channel_program as $item)
+                                                {{-- <input type="radio" name="jenis_program"
+                                                    id="{{ $item->jenis_program }}"
+                                                    value="{{ $item->jenis_program }}">{{ $item->jenis_program }}<br>
+                                                --}}
+
+                                                <option value="{{ $item->id }}"> {{ $item->kode_channel}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -141,7 +157,7 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>* Ketentuan & Catatan khusus</label>
+                                        <label>Ketentuan & Catatan khusus</label>
                                         <textarea class="form-control" name="ketentuan_catatan"
                                             style="height: 100px"></textarea>
                                     </div>
@@ -172,8 +188,14 @@
                                     <div class="form-group">
                                         <label>Klaim Tagihan Ke</label>
                                         <select class="form-control" name="klaim_tagihan_ke" id="klaim_tagihan_ke">
-                                            <option>Langsung Ke Savoria</option>
-                                            <option>Lewat SCM klaim ke Savoria</option>
+                                            @foreach ($data_jenis_program as $item)
+                                                {{-- <input type="radio" name="jenis_program"
+                                                    id="{{ $item->jenis_program }}"
+                                                    value="{{ $item->jenis_program }}">{{ $item->jenis_program }}<br>
+                                                --}}
+
+                                                <option value="{{ $item->id }}"> {{ $item->jenis_program }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -202,8 +224,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Tanggal Batas Klaim</label>
-                                        <input type="date" name="batas_akhir_klaim" id="batas_akhir_klaim"
-                                            class="form-control">
+                                        <input type="date" name="batas_akhir_klaim" id="batas_akhir_klaim" class="form-control">
                                     </div>
                                 </div>
 
@@ -225,6 +246,14 @@
     </div>
 @endsection
 
-@push('page-script')
-
+@push('page-scripts')
+<script type="text/javascript">
+    $(function(){
+     $(".datepicker").datepicker({
+         format: 'yyyy-mm-dd',
+         autoclose: true,
+         todayHighlight: true,
+     });
+    });
+   </script>
 @endpush

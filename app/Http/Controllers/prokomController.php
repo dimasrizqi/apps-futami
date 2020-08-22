@@ -9,7 +9,7 @@ class prokomController extends Controller
 
 {
     public function index(){
-        $data_prokomf1 = DB::table('prokomf1')->get();
+        $data_prokomf1 = DB::table('prokomf1')->where('status','1')->get();
         return view('prokomF1.index',['data_prokomf1' => $data_prokomf1]);
         
     }
@@ -27,7 +27,12 @@ class prokomController extends Controller
     }
     
     public function tambah(){
-        return view('prokomF1.tambah');
+        $data_jenis_program = DB::table('jenis_program')->where('status','1')->orderBy('jenis_program','asc')->get();
+        $data_channel_program = DB::table('channel_program')->where('status','1')->orderBy('channel_program','asc')->get();
+        return view('prokomF1.tambah',[
+            'data_jenis_program'=>$data_jenis_program,
+            'data_channel_program'=>$data_channel_program
+        ]);
     }
 
     public function update(Request $request){
@@ -38,6 +43,9 @@ class prokomController extends Controller
     }
 
     public function simpan(Request $request){
+        $revisi_ke = '0';
+        $status = '1';
+        // return $request;
         DB::insert('insert into prokomf1 (
             kepada_yth, 
             nomor_proposal, 
@@ -62,7 +70,9 @@ class prokomController extends Controller
             disiapkan_oleh, 
             batas_akhir_klaim, 
             periode_program_start, 
-            periode_program_end
+            periode_program_end,
+            jenis_program,
+            status
         )
 
          values (
@@ -70,7 +80,8 @@ class prokomController extends Controller
              ?,?,?,?,?,
              ?,?,?,?,?,
              ?,?,?,?,?,
-             ?,?,?,?)',
+             ?,?,?,?,?,
+             ?)',
 
          [$request->kepada_yth, 
          $request->nomor_proposal, 
@@ -80,7 +91,7 @@ class prokomController extends Controller
          $request->brand_item, 
          $request->area_program, 
          $request->region_program, 
-         $request->revisi_ke, 
+         $revisi_ke, 
          $request->channel_program, 
          $request->background_informasi, 
          $request->ketentuan_catatan, 
@@ -95,7 +106,9 @@ class prokomController extends Controller
          $request->disiapkan_oleh, 
          $request->batas_akhir_klaim, 
          $request->periode_program_start, 
-         $request->periode_program_end
+         $request->periode_program_end,
+         $request->jenis_program,
+         $status
          ]);
         // dd($request->all());
         return redirect()->route('prokomF1-index');

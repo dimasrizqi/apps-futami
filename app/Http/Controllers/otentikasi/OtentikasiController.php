@@ -17,19 +17,13 @@ class OtentikasiController extends Controller
         return view('otentikasi.login');
     }
     public function login(request $request){
-        // // dd($request->all());
-        // $data = User::where('email',$request->email)->firstOrFail();
-        // if($data){
-        //     if(\Hash::check($request->password, $data->password)){
-        //         return redirect('/home');
-        //     }
-        // }
+     
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             $name = Auth::user()->name;
             $grup = Auth::user()->grup;
-            // dd($grup);
-            session(['berhasil_login'=> true, 'namanya'=>$name, 'grupnya'=>$grup]);
-            return view('home');
+            $id_user = Auth::user()->id;
+            session(['berhasil_login'=> true, 'namanya'=>$name, 'grupnya'=>$grup,'id_user'=>$id_user]);
+            return redirect('/home');
         }
         return redirect('/login')->with('message',"Email atau Password salah!!!");
     }

@@ -22,7 +22,7 @@
                             <td> {{ $no + 1 }} </td>
                             <td>{{ $datanya->nomor_proposal }}</td>
                             <td>{{ $datanya->nama_program }}</td>
-                            <td><a href="{{route ('prokomF1-detail',$datanya->id)}}" class="badge badge-success">update</a>
+                            <td><a href="{{route ('prokomF1-detail',$datanya->id)}}" class="badge badge-success">edit</a>
 
                                 @if ($message = Session::get('grupnya') == '1')
                                     <a href="{{route ('prokomF1-hapus',$datanya->id)}}" class="badge badge-danger">Hapus</a>

@@ -13,8 +13,8 @@
 
 <body>
 
-<a name="table0"><h1>Sheet 1: <em>Sales &amp; Commercial</em></h1></a>
 <table cellspacing="0" border="0" align="left">
+	@foreach ($data_prokomf1 as $no => $datanya)
 	<colgroup width="26"></colgroup>
 	<colgroup width="127"></colgroup>
 	<colgroup width="13"></colgroup>
@@ -29,7 +29,7 @@
 	<colgroup width="160"></colgroup>
 	<colgroup width="68" span="2"></colgroup>
 	<tbody><tr>
-		<td style="border-top: 1px solid #000000; border-left: 1px solid #000000" colspan="2" rowspan="3" valign="bottom" height="63" align="left"><font face="Candara"><br><img src="printProkom_files/pmiyk-39jma_html_b4e3f6414b1fceb9.jfif" width="84" vspace="8" hspace="35" height="48">
+	<td style="border-top: 1px solid #000000; border-left: 1px solid #000000" colspan="2" rowspan="3" valign="bottom" height="63" align="left"><font face="Candara"><br><img src="{{asset('/assets/img/SavoriaLogo.png')}}" height="80" style="display:block; margin-left:auto; margin-right:auto; width:160;">
 		</font></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" colspan="8" valign="middle" align="center"><b><font face="Candara">PT SAVORIA KREASI RASA</font></b></td>
 		<td style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000" valign="middle" align="left"><font face="Candara">Doc No.</font></td>
@@ -79,7 +79,7 @@
 		<td style="border-left: 1px solid #000000" valign="middle" height="21" align="left"><font face="Candara">Kepada Yth</font></td>
 		<td valign="middle" align="left"><font size="3" face="Candara"><br></font></td>
 		<td valign="middle" align="center"><b><font size="3" face="Candara">:</font></b></td>
-		<td valign="middle" align="center"><b><font size="3" face="Candara"><br></font></b></td>
+		<td valign="middle" align="center"><b><font size="3" face="Candara"> {{$datanya->kepada_yth}}<br></font></b></td>
 		<td valign="middle" align="center"><b><font size="3" face="Candara"><br></font></b></td>
 		<td valign="middle" align="left"><font size="3" face="Candara"><br></font></td>
 		<td valign="middle" align="left"><font size="3" face="Candara"><br></font></td>
@@ -111,7 +111,7 @@
 		<td style="border-left: 1px solid #000000" valign="middle" height="21" align="left"><font face="Candara">Nomor Proposal</font></td>
 		<td valign="middle" align="left"><font size="3" face="Candara"><br></font></td>
 		<td valign="middle" align="center"><b><font size="3" face="Candara">:</font></b></td>
-		<td valign="middle" align="center"><b><font size="3" face="Candara"><br></font></b></td>
+		<td valign="middle" align="center"><b><font size="3" face="Candara"> {{$datanya->nomor_proposal}}<br></font></b></td>
 		<td style="border-top: 1px solid #000000" valign="middle" align="center"><b><font size="3" face="Candara"><br></font></b></td>
 		<td style="border-top: 1px solid #000000" valign="middle" align="left"><font size="3" face="Candara"><br></font></td>
 		<td style="border-top: 1px solid #000000" valign="middle" align="left"><font size="3" face="Candara"><br></font></td>
@@ -861,7 +861,7 @@
 		<td valign="middle" align="center"><b><font size="3" face="Candara"><br></font></b></td>
 		<td valign="middle" align="center"><b><font size="3" face="Candara"><br></font></b></td>
 		<td valign="middle" align="left"><font face="Candara">:               NON PR</font></td>
-		<td valign="bottom" align="left"><font size="3" face="Candara">PR (Nomor PR : …..........................................................diisi oleh PIC procurement)</font></td>
+		<td valign="bottom" align="left"><font size="3" face="Candara">PR (Nomor PR : ï¿½..........................................................diisi oleh PIC procurement)</font></td>
 		<td valign="middle" align="right"><font size="3" face="Candara"><br></font></td>
 		<td valign="middle" align="left"><font size="3" face="Candara"><br></font></td>
 		<td valign="middle" align="left"><font size="3" face="Candara"><br></font></td>
@@ -1737,11 +1737,7 @@
 		<td valign="bottom" align="left"><font face="Candara"><br></font></td>
 		<td valign="bottom" align="left"><font face="Candara"><br></font></td>
 	</tr>
-</tbody></table>
-<img src="printProkom_files/pmiyk-39jma_html_84180d314caf3fb5.png" width="828" height="337">
-<img src="printProkom_files/pmiyk-39jma_html_22c442e63a24f20c.png" width="723" height="185">
-<br clear="left">
-<!-- ************************************************************************** -->
-
-
+</tbody>
+@endforeach
+</table>
 </body></html>

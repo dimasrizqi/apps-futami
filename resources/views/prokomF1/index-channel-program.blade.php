@@ -4,7 +4,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Home List Channel  Program </h1>
+            <h1>Home List Channel Program </h1>
         </div>
 
         <div class="section-body">
@@ -13,48 +13,28 @@
                 <table class="table table-striped table-bordered">
                     <tr>
                         <th>NO.</th>
-                        <th>Jenis Program</th>
-                        <th>Mekanisme Klaim</th>
+                        <th>Channel Program</th>
+                        <th>Kode Channel</th>
                         <th>Action</th>
                     </tr>
-                    {{-- @foreach ($data_prokomf1 as $no => $datanya) --}}
+                    @foreach ($data_channel as $no => $datanya)
                         <tr>
-                            <th rowspan="2"> 1 </th>
-                            <th rowspan="2">satu program</th>
-                            <td>langsung claim</td>
-                            <td>
-                                <a href="#" class="btn btn-success">Detail Data</a>
-                                <a href="#" class="btn btn-warning">Hapus Data</a>
+                            <td>{{ $no + 1 }}</td>
+                            <td>{{ $datanya->channel_program }}</td>
+                            <td>{{ $datanya->kode_channel }}</td>
+                            <td><a href="#" class="btn btn-success">Edit</a>
+                                @if ($message = Session::get('grupnya') == '1')
+                                    <form action="{{ route('prokomF1-channel-program-hapus', $datanya->id) }}" method="post"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-danger" type="submit" name="id"
+                                            value="{{ $datanya->id }}">Hapus</button>
+                                    </form>
+                                @endif
                             </td>
                         </tr>
-
-                        <tr>
-                            <td>jangna lupa kwitansi</td>
-                            <td>
-                                <a href="#" class="btn btn-success">Detail Data</a>
-                                <a href="#" class="btn btn-warning">Hapus Data</a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                          <th class="rowspan" rowspan="2"> 2 </th>
-                          <th rowspan="2">satu program</th>
-                          <td>langsung claim</td>
-                          <td>
-                              <a href="#" class="btn btn-success">Detail Data</a>
-                              <a href="#" class="btn btn-warning">Hapus Data</a>
-                          </td>
-                      </tr>
-                      
-                      <tr>
-                          <td>jangna lupa kwitansi</td>
-                          <td>
-                              <a href="#" class="btn btn-success">Detail Data</a>
-                              <a href="#" class="btn btn-warning">Hapus Data</a>
-                          </td>
-                      </tr>
-                        {{--
-                    @endforeach --}}
+                    @endforeach
                 </table>
             </div>
         </div>

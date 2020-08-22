@@ -9,8 +9,8 @@ class prokomJenisProgramController extends Controller
 {
     
     public function index(){
-        $data_prokomf1 = DB::table('prokomf1')->get();
-        return view('prokomF1.index-jenis-program');
+        $data_jenis = DB::table('jenis_program')->get();
+        return view('prokomF1.index-jenis-program',['data_jenis' => $data_jenis]);
         
     }
 
@@ -18,11 +18,17 @@ class prokomJenisProgramController extends Controller
         return view('prokomF1.tambah-jenis-program');
         
     }
+    public function hapus(Request $request){
+        // return $request;
+        //untuk script hapus
+        // DB::table('jenis_program')->where('id',$request->id)->delete();
+        return redirect()->route('prokomF1-index-jenis-program')->with('Jenis program dihapus');
+    }
 
     public function simpan(Request $request){
-        DB::insert('insert into prokomf1 (kepada_yth, di_ketahui, nama_program) values (?, ?,?)', [$request->kepada_yth, $request->di_ketahui, $request->nama_program]);
-        // dd($request->all());
-        return redirect('/home')->with('Channel program ditambahkan');
-        //setelah simpan berhasil redirect ke input mekanisme program
+        DB::insert('insert into jenis_program (
+            jenis_program) values (?)', [
+            $request->jenis_program]);
+        return redirect()->route('prokomF1-index-jenis-program')->with('Jenis program ditambahkan');
     }
 }

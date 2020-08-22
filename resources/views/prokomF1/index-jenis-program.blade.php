@@ -14,47 +14,34 @@
                     <tr>
                         <th>NO.</th>
                         <th>Jenis Program</th>
-                        <th>Mekanisme Klaim</th>
                         <th>Action</th>
                     </tr>
-                    {{-- @foreach ($data_prokomf1 as $no => $datanya) --}}
+
+                    @foreach ($data_jenis as $no => $datanya)
                         <tr>
-                            <th rowspan="2"> 1 </th>
-                            <th rowspan="2">satu program</th>
-                            <td>langsung claim</td>
+                            <td>{{ $no + 1 }} </td>
+                            <td>{{ $datanya->jenis_program }}</td>
                             <td>
-                                <a href="#" class="btn btn-success">Detail Data</a>
-                                <a href="#" class="btn btn-warning">Hapus Data</a>
+                                <a href="#" class="btn btn-success">Edit</a>
+                                <a href="#" class="btn btn-info">Ketentuan Klaim</a>
+                                @if ($message = Session::get('grupnya') == '1')
+                                    <form action="{{ route('prokomF1-jenis-program-hapus', $datanya->id) }}" method="post"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-danger" type="submit" name="id"
+                                            value="{{ $datanya->id }}">Hapus</button>
+                                    </form>
+                                    {{-- <a href="#" class="badge badge-danger">Hapus
+                                        <form action="{{ route('prokomF1-jenis-program-hapus', $datanya->id) }}" id=''
+                                            class="d-inline" method="post"></form>
+                                    </a> --}}
+
                             </td>
                         </tr>
+                    @endif
 
-                        <tr>
-                            <td>jangna lupa kwitansi</td>
-                            <td>
-                                <a href="#" class="btn btn-success">Detail Data</a>
-                                <a href="#" class="btn btn-warning">Hapus Data</a>
-                            </td>
-                        </tr>
-
-                        <tr>
-                          <th class="rowspan" rowspan="2"> 2 </th>
-                          <th rowspan="2">satu program</th>
-                          <td>langsung claim</td>
-                          <td>
-                              <a href="#" class="btn btn-success">Detail Data</a>
-                              <a href="#" class="btn btn-warning">Hapus Data</a>
-                          </td>
-                      </tr>
-                      
-                      <tr>
-                          <td>jangna lupa kwitansi</td>
-                          <td>
-                              <a href="#" class="btn btn-success">Detail Data</a>
-                              <a href="#" class="btn btn-warning">Hapus Data</a>
-                          </td>
-                      </tr>
-                        {{--
-                    @endforeach --}}
+                    @endforeach
                 </table>
             </div>
         </div>

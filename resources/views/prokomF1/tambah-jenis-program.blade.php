@@ -19,7 +19,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Name Jenis Program</label>
-                                        <input type="text" placeholder="Input Nama Jenis Program" name="kepada_yth" class="form-control">
+                                        <input type="text" placeholder="Input Nama Jenis Program" name="jenis_program" class="form-control">
                                     </div>
                                 </div>
                                 
