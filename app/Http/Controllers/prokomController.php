@@ -9,7 +9,7 @@ class prokomController extends Controller
 
 {
     public function index(){
-        $data_prokomf1 = DB::table('prokomf1')->where('status','1')->get();
+        $data_prokomf1 = DB::table('prokomf1')->where('status','1')->orderBy('id','asc')->get();
         return view('prokomF1.index',['data_prokomf1' => $data_prokomf1]);
         
     }
@@ -21,9 +21,38 @@ class prokomController extends Controller
     }
 
     public function print(Request $request){
-        $data_prokomf1 = DB::table('prokomf1')->where('id',$request->id)->get();
-        return view('prokomF1.formProkom.printProkom',['data_prokomf1' => $data_prokomf1]);
-        //dd($request->id);
+        $data_prokomf1 = DB::table('prokomf1')
+            ->where('id',$request->id)
+            ->get();
+        $no_proposal=$data_prokomf1[0]->nomor_proposal;
+        // return view('prokomF1.formProkom.printProkom',['data_prokomf1' => $data_prokomf1]);
+        // dd($no_proposal);
+
+        //Download as pdf
+        // return PDF::->loadView('reports.invoiceSell')->stream();
+        $pdf = \PDF::setOptions(['isRemoteEnabled' => true])
+            ->loadView('prokomF1.formProkom.printProkom', ['data_prokomf1' => $data_prokomf1])
+            ->setPaper('a4', 'potrait');
+        //stream pdf file name as nomor proposal
+        return $pdf->stream($no_proposal.".pdf");
+        // return $pdf->download('prokomF1.pdf');
+    }
+    public function prints(Request $request){
+        $data_prokomf1 = DB::table('prokomf1')
+            ->where('id',$request->id)
+            ->get();
+        $no_proposal=$data_prokomf1[0]->nomor_proposal;
+        // return view('prokomF1.formProkom.printProkom',['data_prokomf1' => $data_prokomf1]);
+        // dd($no_proposal);
+
+        //Download as pdf
+        // return PDF::->loadView('reports.invoiceSell')->stream();
+        $pdf = \PDF::setOptions(['isRemoteEnabled' => true])
+            ->loadView('prokomF1.formProkom.setup-print-prokom', ['data_prokomf1' => $data_prokomf1])
+            ->setPaper('a4', 'potrait');
+        //stream pdf file name as nomor proposal
+        return $pdf->stream($no_proposal.".pdf");
+        // return $pdf->download('prokomF1.pdf');
     }
     
     public function tambah(){
@@ -72,7 +101,8 @@ class prokomController extends Controller
             periode_program_start, 
             periode_program_end,
             jenis_program,
-            status
+            status, 
+            ketentuan_tambahan_operasional
         )
 
          values (
@@ -81,7 +111,7 @@ class prokomController extends Controller
              ?,?,?,?,?,
              ?,?,?,?,?,
              ?,?,?,?,?,
-             ?)',
+             ?,?)',
 
          [$request->kepada_yth, 
          $request->nomor_proposal, 
@@ -108,7 +138,8 @@ class prokomController extends Controller
          $request->periode_program_start, 
          $request->periode_program_end,
          $request->jenis_program,
-         $status
+         $status,
+         $request->ketentuan_tambahan_operasional
          ]);
         // dd($request->all());
         return redirect()->route('prokomF1-index');

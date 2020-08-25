@@ -68,6 +68,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //prokom view with get id
     Route::get('/prokom/print/{id}', 'prokomController@print' ) -> name('prokomF1-print');
+    Route::get('/prokom/prints/{id}', 'prokomController@prints' ) -> name('prokomF1-prints');
     Route::post('/prokom/{id}', 'prokomController@hapus' ) -> name('prokomF1-hapus');
     Route::delete('/prokom/jenisprogram/hapus/{id}', 'prokomJenisProgramController@hapus' ) -> name('prokomF1-jenis-program-hapus');
     Route::delete('/prokom/channelprogram/hapus/{id}', 'prokomChannelController@hapus' ) -> name('prokomF1-channel-program-hapus');

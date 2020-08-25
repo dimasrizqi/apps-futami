@@ -6,7 +6,6 @@
         <div class="section-header">
             <h1>Home Sales & Commercial </h1>
         </div>
-
         <div class="section-body">
             <div class="title m-b-md">
                 <a href="{{ route('prokomF1-tambah') }}" class="btn btn-info">Tambah Data</a>
@@ -22,13 +21,11 @@
                             <td> {{ $no + 1 }} </td>
                             <td>{{ $datanya->nomor_proposal }}</td>
                             <td>{{ $datanya->nama_program }}</td>
-                            <td><a href="{{route ('prokomF1-detail',$datanya->id)}}" class="badge badge-success">edit</a>
-
+                            <td><a href="{{route ('prokomF1-detail',$datanya->id)}}" class="badge badge-success" >edit</a>
                                 @if ($message = Session::get('grupnya') == '1')
                                     <a href="{{route ('prokomF1-hapus',$datanya->id)}}" class="badge badge-danger">Hapus</a>
                                 @endif
-
-                                <a href="{{route ('prokomF1-print',$datanya->id)}}" class="badge badge-info">Print</a>
+                                <a href="{{route ('prokomF1-print',$datanya->id)}}" class="badge badge-info" target="_blank">Print</a>
                             </td>
                         </tr>
                     @endforeach
