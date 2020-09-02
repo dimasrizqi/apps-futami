@@ -22,20 +22,37 @@
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="far fa-file-alt"></i> <span>PROKOM</span></a>
                 <ul class="dropdown-menu">
                   <li><a class="nav-link" href="{{ route('prokomF1-index')}} ">Sales & Commercial</a></li>
-                  <li><a>------------------------------</a></li>
-                  <li><a class="nav-link" href="{{ route('prokomF1-index-jenis-program')}}">   Jenis Program</a></li>
+                  {{-- <li><a class="nav-link" href="   ">L1. Cost Sheet</a></li> --}}
+                  {{-- <li><a class="nav-link" href="{{route('kelengkapan-dokumen-index')}}">L2. Kelengkapan Dokumen</a></li> --}}
+                  <li><a>----------------------------</a></li>
+                  <li><a class="nav-link" href="{{ route('prokomF1-index-jenis-program')}}">Jenis Program</a></li>
                   <li><a class="nav-link" href="{{ route('prokomF1-index-channel-program')}}">Channel Program</a></li>
                   <li><a class="nav-link" href="{{ route('prokomF1-index-metode-klaim')}}">Metode Klaim</a></li>
                   <li><a class="nav-link" href="">Tujuan Klaim Tagihan</a></li>
                   <li><a class="nav-link" href="">451 Product Listing</a></li>
                   <li><a class="nav-link" href="">452 Selling Operation</a></li>
                   <li><a class="nav-link" href="">453 Trade Promo</a></li>
+                  
                   {{-- <li><a class="nav-link" href="#">Prokom L1 Cost Sheet</a></li>
                   <li><a class="nav-link" href="#">Prokom Kelengkapan Dok</a></li> --}}
                 </ul>
               </li>
-              {{-- <li class="active"><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li>
+              @if ($message = Session::get('grupnya') == '1')
+              <li class="menu-header">User</li>
               <li class="nav-item dropdown">
+                <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Auth</span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Lihat User</a></li>
+                  <li><a href="#">Tambah User</a></li>
+                  {{-- <li><a href="auth-login.html">Login</a></li>
+                  <li><a class="beep beep-sidebar" href="auth-login-2.html">Login 2</a></li>
+                  <li><a href="auth-register.html">Register</a></li>
+                  <li><a href="auth-reset-password.html">Reset Password</a></li> --}}
+                </ul>
+              </li>
+              @endif
+               {{--<li class="active"><a class="nav-link" href="blank.html"><i class="far fa-square"></i> <span>Blank Page</span></a></li>
+               <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Bootstrap</span></a>
                 <ul class="dropdown-menu">
                   <li><a class="nav-link" href="bootstrap-alert.html">Alert</a></li>
@@ -162,8 +179,8 @@
 
              <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
               <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
-                <i class="fas fa-rocket"></i> Documentation --}}
+                <i class="fas fa-rocket"></i> Documentation 
               </a>
-            </div> 
+            </div>  --}}
         </aside>
       </div>

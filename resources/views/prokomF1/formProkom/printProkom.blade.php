@@ -7,6 +7,8 @@
             margin: 0.2cm 0.2cm 0.2cm 0.2cm;
         }
 
+        
+
         td img {
             /* display: block; */
             margin-left: 0;
@@ -20,8 +22,8 @@
             font-family: 'Times New Roman', Times, serif, sans-serif;
             border-collapse: collapse;
             font-size: 12px;
-            table-layout: auto;
-            width: 100%;
+            /* table-layout: auto;
+            width: 100%; */
         }
 
         td,
@@ -40,10 +42,11 @@
 </head>
 
 <body>
+
     <table>
         @foreach ($data_prokomf1 as $no => $datanya)
             <tbody>
-                <tr>
+                <tr >
                     <td colspan="2" rowspan="4" align="center"><img src="{{ asset('/assets/img/SavoriaLogo.png') }}"
                             width="100PX">
                     </td>
@@ -100,7 +103,11 @@
                 </tr>
                 <tr>
                     <td colspan="2">Jenis Program</td>
-                    <td colspan="6">: {{$datanya->jenis_program}}</td>
+                    <td colspan="6">:
+                        @foreach ($data_jenis_program->where('id', $datanya->jenis_program) as $item)
+                            {{ $item->jenis_program }}
+                        @endforeach
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2">Nama Program</td>
@@ -108,101 +115,84 @@
                 </tr>
                 <tr>
                     <td colspan="2">Periode Program</td>
-                    <td colspan="6">: {{ \Carbon\Carbon::parse($datanya->periode_program_start)->locale('id')->isoFormat('DD MMMM Y')}} sampai {{ \Carbon\Carbon::parse($datanya->periode_program_end)->locale('id')->isoFormat('DD MMMM Y')}}</td>
+                    <td colspan="6">:
+                        {{ \Carbon\Carbon::parse($datanya->periode_program_start)->locale('id')->isoFormat('DD MMMM Y') }}
+                        sampai
+                        {{ \Carbon\Carbon::parse($datanya->periode_program_end)->locale('id')->isoFormat('DD MMMM Y') }}
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2">Area Program</td>
-                    <td colspan="6">: {{ $datanya->area_program}}</td>
+                    <td colspan="6">: {{ $datanya->area_program }}</td>
                 </tr>
                 <tr>
                     <td colspan="2">Region Program</td>
-                    <td colspan="6">: {{ $datanya->region_program}}</td>
+                    <td colspan="6">: {{ $datanya->region_program }}</td>
                 </tr>
                 <tr>
                     <td colspan="8"></td>
                 </tr>
                 <tr>
                     <td colspan="2">Channel Program</td>
-                    <td colspan="6">: {{ $datanya->channel_program}}</td>
+                    <td colspan="6">:
+                        @foreach ($data_channel_program->where('id', $datanya->channel_program) as $item)
+                            {{ $item->channel_program }}
+                        @endforeach
+                    </td>
                 </tr>
                 <tr>
                     <td style=" text-align: center">1 </td>
-					<td colspan="7">Background / Informasi : <br>
-						{{ $datanya->background_informasi}}
-					</td>
+                    <td colspan="7">Background / Informasi : <br>
+                        {{ $datanya->background_informasi }}
+                    </td>
                 </tr>
                 <tr>
                     <td style=" text-align: center" rowspan="3">2</td>
-					<td colspan="7">Mekanisme program : <br>
-						{{ $datanya->mekanisme_program}}
-					
-					</td>
+                    <td colspan="7">Mekanisme program : <br>
+                        {{ $datanya->mekanisme_program }}
+                    </td>
                 </tr>
                 <tr>
-					<td colspan="2">Ketentuan & Catatan Khusus : </td>
-					<td colspan="5">{{ $datanya->ketentuan_catatan}}</td>
+                    <td colspan="2">Ketentuan & Catatan Khusus : </td>
+                    <td colspan="5">{{ $datanya->ketentuan_catatan }}</td>
                 </tr>
                 <tr>
-					<td colspan="7"> 
-						Informasi / Kontak : <br>
-						- PIC Brand / Commercial : {{ $datanya->pic_brand_commercial}}<br>
-						- PIC Sales & Distribution :  {{ $datanya->pic_sales_distribution}}<br>
-						- PIC Finance & Accounting :   {{ $datanya->pic_finance_accounting}}<br>
-					 </td>
+                    <td colspan="7">
+                        Informasi / Kontak : <br>
+                        - PIC Brand / Commercial : {{ $datanya->pic_brand_commercial }}<br>
+                        - PIC Sales & Distribution : {{ $datanya->pic_sales_distribution }}<br>
+                        - PIC Finance & Accounting : {{ $datanya->pic_finance_accounting }}<br>
+                    </td>
                 </tr>
                 <tr>
-                    <td style=" text-align: center">3</td>
+                    <td style=" text-align: center"  rowspan="7">3</td>
                     <td colspan="7">Mekanisme Klaim : </td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td colspan="7">Klaim Tagihan Ke :  {{ $datanya->klaim_tagihan_ke}}</td>
+                    <td colspan="7">Klaim Tagihan Ke :
+						@foreach ($klaim->where('id', $datanya->klaim_tagihan_ke) as $item)
+                            {{ $item->klaim_tagihan_ke }}
+                        @endforeach	
+						
+					</td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td colspan="7">Metode Klaim : {{ $datanya->metode_klaim}}</td>
+                    <td colspan="7">Metode Klaim : {{ $datanya->metode_klaim }}</td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td colspan="7">Faktur Pajak : {{ $datanya->faktur_pajak}}</td>
+                    <td colspan="7">Faktur Pajak : {{ $datanya->faktur_pajak }}</td>
                 </tr>
                 <tr>
-                    <td></td>
-                    <td colspan="7">Tanggal Batas Klaim : {{ $datanya->batas_akhir_klaim}}</td>
+                    <td colspan="7">Tanggal Batas Klaim : 
+						{{ \Carbon\Carbon::parse($datanya->batas_akhir_klaim)->locale('id')->isoFormat('DD MMMM Y') }}
+					</td>
                 </tr>
                 <tr>
-                    <td></td>
                     <td colspan="7">Ketentuan Prosedur Klaim : </td>
-                    
+
                 </tr>
                 <tr>
-                    <td></td>
-				<td  colspan="7">Ketentuan Tambahan Operasional: {{$datanya->ketentuan_tambahan_operasional}}</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td colspan="6"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td colspan="6"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td colspan="6"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td colspan="6"></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td colspan="6"></td>
+                    <td colspan="7">Ketentuan Tambahan Operasional: {{ $datanya->ketentuan_tambahan_operasional }}</td>
                 </tr>
                 <tr>
                     <td colspan="3" style=" text-align: center">Disiapkan Oleh:</td>
@@ -210,16 +200,18 @@
 
                     <td colspan="3" style=" text-align: center">Disetujui Oleh:</td>
                 </tr>
-                <tr>
-                    <td colspan="3" style=" text-align: center">{{ $datanya->disiapkan_oleh }}</td>
+                <tr >
+                    <td colspan="3" style=" text-align: center"><br><br><br><br></td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
                 </tr>
-                <tr>
-                    <td colspan="3" style=" text-align: center"> Sales Commercial</td>
+                <tr >
+                    <td colspan="3" style=" text-align: center"><u>  @foreach ($creator->where('id', $datanya->disiapkan_oleh) as $item)
+                        {{ $item->name }}
+                    @endforeach </u><br>Sales Commercial</td>
                     <td>Sales Admin</td>
                     <td>Budget Control</td>
                     <td>Head Dept Sales</td>

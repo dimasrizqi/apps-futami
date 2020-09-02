@@ -50,12 +50,7 @@
                                         <select class="form-control" name="jenis_program" id="jenis_program">
                                             <option value=""></option> 
                                             @foreach ($data_jenis_program as $item)
-                                                {{-- <input type="radio" name="jenis_program"
-                                                    id="{{ $item->jenis_program }}"
-                                                    value="{{ $item->jenis_program }}">{{ $item->jenis_program }}<br>
-                                                --}}
-
-                                                <option value="{{ $item->id }}"> {{ $item->jenis_program }}</option>
+                                            <option value="{{ $item->id }}"> {{ $item->jenis_program }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -125,15 +120,9 @@
                                     <div class="form-group">
                                         <label>Channel Program</label>
                                         <select class="form-control" name="channel_program" id="channel_program">
-                                            {{-- <option>Option 1</option>
-                                            <option>Option 2</option>--}}
+                                           
                                             <option value=""></option> 
                                             @foreach ($data_channel_program as $item)
-                                                {{-- <input type="radio" name="jenis_program"
-                                                    id="{{ $item->jenis_program }}"
-                                                    value="{{ $item->jenis_program }}">{{ $item->jenis_program }}<br>
-                                                --}}
-
                                                 <option value="{{ $item->id }}"> {{ $item->kode_channel}}</option>
                                             @endforeach
                                         </select>
@@ -188,13 +177,9 @@
                                     <div class="form-group">
                                         <label>Klaim Tagihan Ke</label>
                                         <select class="form-control" name="klaim_tagihan_ke" id="klaim_tagihan_ke">
-                                            @foreach ($data_jenis_program as $item)
-                                                {{-- <input type="radio" name="jenis_program"
-                                                    id="{{ $item->jenis_program }}"
-                                                    value="{{ $item->jenis_program }}">{{ $item->jenis_program }}<br>
-                                                --}}
-
-                                                <option value="{{ $item->id }}"> {{ $item->jenis_program }}</option>
+                                            <option value=""></option> 
+                                            @foreach ($klaim_tagihan_ke as $item)
+                                                <option value="{{ $item->id }}"> {{ $item->klaim_tagihan_ke }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -229,12 +214,14 @@
                                 </div>
 
 
-                                <div class="col-md-12">
-                                    <div class="card-footer text-right">
-                                        <button class="btn btn-primary mr-1" type="submit">Submit</button>
-                                        <button class="btn btn-secondary" type="reset">Reset</button>
+                               
+                                    <div class="fixed-bottom text-center mb-5">
+                                        <a href=" {{route ('prokomF1-tambah-chost-sheet')}} " class="btn btn-success">L1. Cost Sheet </a>
+                                        <a href=" {{route('kelengkapan-dokumen-tambah')}} " class="btn btn-success">L2. Kelengkapan Dokumen </a>
+                                        <button class="btn btn-info" type="submit">Submit</button>
                                     </div>
-                                </div>
+                                
+
                             </div>
                         </div>
 

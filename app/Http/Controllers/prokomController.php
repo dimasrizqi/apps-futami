@@ -17,50 +17,57 @@ class prokomController extends Controller
     public function detail(Request $request){
         $data_prokomf1 = DB::table('prokomf1')->where('id',$request->id)->get();
         return view('prokomF1.detail',['data_prokomf1' => $data_prokomf1]);
-        //dd($request->id);
     }
 
     public function print(Request $request){
+        $data_jenis_program = DB::table('jenis_program')
+            ->where('status','1')
+            ->orderBy('jenis_program','asc')
+            ->get();
+        $data_channel_program = DB::table('channel_program')
+            ->where('status','1')
+            ->orderBy('channel_program','asc')
+            ->get();
         $data_prokomf1 = DB::table('prokomf1')
             ->where('id',$request->id)
             ->get();
         $no_proposal=$data_prokomf1[0]->nomor_proposal;
-        // return view('prokomF1.formProkom.printProkom',['data_prokomf1' => $data_prokomf1]);
-        // dd($no_proposal);
-
-        //Download as pdf
-        // return PDF::->loadView('reports.invoiceSell')->stream();
-        $pdf = \PDF::setOptions(['isRemoteEnabled' => true])
-            ->loadView('prokomF1.formProkom.printProkom', ['data_prokomf1' => $data_prokomf1])
-            ->setPaper('a4', 'potrait');
-        //stream pdf file name as nomor proposal
-        return $pdf->stream($no_proposal.".pdf");
-        // return $pdf->download('prokomF1.pdf');
-    }
-    public function prints(Request $request){
-        $data_prokomf1 = DB::table('prokomf1')
-            ->where('id',$request->id)
+        $creator=DB::table('users')
             ->get();
-        $no_proposal=$data_prokomf1[0]->nomor_proposal;
-        // return view('prokomF1.formProkom.printProkom',['data_prokomf1' => $data_prokomf1]);
-        // dd($no_proposal);
+        $klaim=DB::table('klaim_tagihan_ke')
+            ->get();
 
         //Download as pdf
-        // return PDF::->loadView('reports.invoiceSell')->stream();
         $pdf = \PDF::setOptions(['isRemoteEnabled' => true])
-            ->loadView('prokomF1.formProkom.setup-print-prokom', ['data_prokomf1' => $data_prokomf1])
+            ->loadView('prokomF1.formProkom.printProkom', [
+                'data_prokomf1' => $data_prokomf1,
+                'data_jenis_program'=>$data_jenis_program,
+                'data_channel_program'=>$data_channel_program,
+                'creator'=>$creator,
+                'klaim'=>$klaim,
+            ])
             ->setPaper('a4', 'potrait');
+        // return view('prokomF1.formProkom.printProkom', [
+        //     'data_prokomf1' => $data_prokomf1,
+        //     'data_jenis_program'=>$data_jenis_program,
+        //     'data_channel_program'=>$data_channel_program,
+        //     'creator'=>$creator,
+        //     'klaim'=>$klaim,
+        // ]);
         //stream pdf file name as nomor proposal
         return $pdf->stream($no_proposal.".pdf");
         // return $pdf->download('prokomF1.pdf');
     }
     
+    
     public function tambah(){
         $data_jenis_program = DB::table('jenis_program')->where('status','1')->orderBy('jenis_program','asc')->get();
         $data_channel_program = DB::table('channel_program')->where('status','1')->orderBy('channel_program','asc')->get();
-        return view('prokomF1.tambah',[
+        $klaim = DB::table('klaim_tagihan_ke')->get();
+            return view('prokomF1.tambah',[
             'data_jenis_program'=>$data_jenis_program,
-            'data_channel_program'=>$data_channel_program
+            'data_channel_program'=>$data_channel_program,
+            'klaim_tagihan_ke'=>$klaim
         ]);
     }
 
