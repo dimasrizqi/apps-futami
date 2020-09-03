@@ -18,7 +18,9 @@
                         @if ($message = Session::get('id_user'))
                         {{ $message }}
                         @endif">
-                        <input type="number" name="no_proposal" >
+                        <input type="hidden" name="no_proposal" value=" @php
+                        echo $_GET["no_proposal"];
+                    @endphp" >
                         <div class="card-body">
                             <div class="row">
 
@@ -128,7 +130,7 @@
 <script type="text/javascript">
         $(document).ready(function() {
             var html =
-                '<div name="tambahan" id="tambahan" class="col-md-3"><div class="form-group"><input type="number" name="biaya[]" class="form-control txtCal"/></div></div><div class="col-md-9"><div class="form-group"><input type="button" name="remove" id="remove" value="-" class="btn btn-danger"></div></div>';
+                '<div name="tambahan" id="tambahan" class="col-md-3"><div class="form-group"><input type="number" name="biaya[]" class="form-control txtCal"/></div></div><div class="col-md-9"><div class="form-group"><input type="button" name="remove" id="remove" value="-" class="btn btn-danger"><input type="button" name="add" id="add" value="+" class="btn btn-success"></div></div>';
             var max = 20;
             var x = 2;
 

@@ -41,7 +41,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>* Nomor Proposal</label>
-                                        <input type="text" name="nomor_proposal" class="form-control">
+                                        <input type="text" id="myText" name="nomor_proposal" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -213,9 +213,8 @@
                                     </div>
                                 </div>
                                     <div class="fixed-bottom text-center mb-5">
-                                        
-
-                                        <a href=" {{route ('prokomF1-tambah-chost-sheet')}}" class="btn btn-success">L1. Cost Sheet </a>
+                                        {{-- <input type="button" onclick="myFunction()" class="btn btn-success" value="L1. Cost Sheet"> --}}
+                                        {{-- <a href=" {{route ('prokomF1-tambah-chost-sheet')}}?noproposal" class="btn btn-success">L1. Cost Sheet </a> --}}
                                         <a href=" {{route('kelengkapan-dokumen-tambah')}} " class="btn btn-success">L2. Kelengkapan Dokumen </a>
                                         <button class="btn btn-info" type="submit">Submit</button>
                                     </div>
@@ -242,4 +241,11 @@
      });
     });
    </script>
+
+<script>
+    function myFunction() {
+        var x = document.getElementById("myText").value;
+        location.replace("{{route ('prokomF1-tambah-chost-sheet')}}?no_proposal="+x);
+    }
+    </script>
 @endpush

@@ -18,9 +18,9 @@ Route::get('/', function () {
     return 'opps...';
 });
 
-// Route::match(['get', 'post'],'/tambahmulti', function () {
-//     return view('tambahmulti');
-// });
+Route::match(['get', 'post'],'/tambahmulti', function () {
+    return view('tambahmulti');
+});
 // Route::post('/tambahmulti/simpan','tambahmulti@simpan');
 
 

@@ -41,5 +41,6 @@ class costsheetController extends Controller
          
          DB::table('rincian_budget')->insert($insert_data);
          return redirect()->back();
+        //  return redirect()->route('prokomF1-tambah');
     }
 }
