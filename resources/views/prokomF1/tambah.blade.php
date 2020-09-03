@@ -212,11 +212,10 @@
                                         <input type="date" name="batas_akhir_klaim" id="batas_akhir_klaim" class="form-control">
                                     </div>
                                 </div>
-
-
-                               
                                     <div class="fixed-bottom text-center mb-5">
-                                        <a href=" {{route ('prokomF1-tambah-chost-sheet')}} " class="btn btn-success">L1. Cost Sheet </a>
+                                        
+
+                                        <a href=" {{route ('prokomF1-tambah-chost-sheet')}}" class="btn btn-success">L1. Cost Sheet </a>
                                         <a href=" {{route('kelengkapan-dokumen-tambah')}} " class="btn btn-success">L2. Kelengkapan Dokumen </a>
                                         <button class="btn btn-info" type="submit">Submit</button>
                                     </div>

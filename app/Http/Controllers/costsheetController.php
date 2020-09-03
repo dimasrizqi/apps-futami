@@ -20,8 +20,26 @@ class costsheetController extends Controller
     }
 
     public function simpan(Request $request){
-        // DB::insert('insert into crud (kode_barang, nama_barang) values (?, ?)', [$request->kode_barang, $request->nama_barang]);
-        // // dd($request->all());
-        // return redirect()->route('crud-index');
+        $biaya = $request->biaya;
+        for($count = 0; $count < count($biaya); $count++){
+            $data = array(
+                'biaya' => $biaya[$count],
+                'creator' => $request->creator,
+                'no_proposal'=> $request->no_proposal
+            );
+            $insert_data[] = $data; 
+        }
+        
+        DB::table('cost_sheet')->insert(
+            array(
+                'item_cost' => $request->item_cost,
+                'avg_penjualan' => $request->avg_penjualan,
+                'target' => $request->target,
+                'no_proposal' => $request->no_proposal,
+                'creator' => $request->creator,
+                ));
+         
+         DB::table('rincian_budget')->insert($insert_data);
+         return redirect()->back();
     }
 }
