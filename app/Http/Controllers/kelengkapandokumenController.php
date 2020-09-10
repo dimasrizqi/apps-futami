@@ -11,6 +11,12 @@ class kelengkapandokumenController extends Controller
     public function tambah(){
         return view('prokomF1.kelengkapandokumen.tambah');
     }
+    public function detail(Request $request){
+        return view('prokomF1.kelengkapandokumen.detail');
+    }
+    public function print(Request $request){
+        return view('prokomF1.kelengkapandokumen.print');
+    }
     public function index(){
         $kd=DB::table('kelengkapan_dokumen')->get();
         return view('prokomF1.kelengkapandokumen.index',['kd'=>$kd]);
@@ -42,7 +48,7 @@ class kelengkapandokumenController extends Controller
             );
             $insert_data[] = $data; 
         }
-        
+        DB::table('lampiran')->insert($insert_data);
         DB::table('kelengkapan_dokumen')->insert(
             array(
                 'vendor' => $request->vendor,
@@ -62,9 +68,15 @@ class kelengkapandokumenController extends Controller
                 'no_proposal' => $request->no_proposal
                 ));
          
-         DB::table('lampiran')->insert($insert_data);
-        // return redirect()->route('kelengkapan-dokumen-tambah-lampiran');
-        return redirect()->back();
+         $id_kelengkapan_dokumen = DB::table('kelengkapan_dokumen')->where('no_proposal',$request->no_proposal)->first()->id;
+       // dd($id_kelengkapan_dokumen);
+        DB::table('prokomf1')
+            ->where('nomor_proposal', $request->no_proposal)
+            ->update([
+                    'kelengkapan_dokumen' => $id_kelengkapan_dokumen
+                ]);
+        return redirect()->route('prokomF1-index');
+        // return redirect()->back();
     }
     public function simpanlampiran(Request $request){
         

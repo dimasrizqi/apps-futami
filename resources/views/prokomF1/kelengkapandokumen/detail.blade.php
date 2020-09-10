@@ -1,10 +1,11 @@
 @extends('layouts.master')
-@section('title', 'Tambah Kelengkapan Dokumen')
+@section('title', 'Edit=['
+'] Kelengkapan Dokumen')
 
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Input Kelengkapan Dokumen Untuk Prokom Sales & Commercial</h1>
+            <h1>Edit Kelengkapan Dokumen Untuk Prokom Sales & Commercial</h1>
         </div>
     </section>
     <div class="section-body">
@@ -18,10 +19,7 @@
                         @if ($message = Session::get('id_user'))
                         {{ $message }}
                         @endif">
-                        <input type="hidden" name="no_proposal" value="
-                        @php
-                        echo $_GET['no_proposal'];
-                        @endphp" >
+                        <input type="hidden" name="no_proposal" value="" >
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">

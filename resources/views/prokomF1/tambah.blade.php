@@ -87,14 +87,14 @@
                                     <label>* Periode Program</label>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label>Start Program</label>
                                         <input type="date" id="periode_program_start" name="periode_program_start"
                                             class="form-control">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label>Selesai Program</label>
                                         <input type="date" id="periode_program_end" name="periode_program_end"
@@ -151,40 +151,40 @@
                                             style="height: 100px"></textarea>
                                     </div>
                                 </div>
-
+                                
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label> PIC Brand / Commercial</label>
                                         <input class="form-control" name="pic_brand_commercial">
                                     </div>
                                 </div>
-
+                                
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>PIC Sales & Distribution</label>
                                         <input class="form-control" name="pic_sales_distribution">
                                     </div>
                                 </div>
-
+                                
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>PIC Finance & Accounting</label>
                                         <input class="form-control" name="pic_finance_accounting">
                                     </div>
                                 </div>
-
+                                
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Klaim Tagihan Ke</label>
                                         <select class="form-control" name="klaim_tagihan_ke" id="klaim_tagihan_ke">
                                             <option value=""></option> 
                                             @foreach ($klaim_tagihan_ke as $item)
-                                                <option value="{{ $item->id }}"> {{ $item->klaim_tagihan_ke }}</option>
+                                            <option value="{{ $item->id }}"> {{ $item->klaim_tagihan_ke }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
-
+                                
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Metode Klaim</label>
@@ -205,42 +205,41 @@
                                         </select>
                                     </div>
                                 </div>
-
-                                <div class="col-md-12">
+                                
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label>Tanggal Batas Klaim</label>
                                         <input type="date" name="batas_akhir_klaim" id="batas_akhir_klaim" class="form-control">
                                     </div>
                                 </div>
-                                    <div class="fixed-bottom text-center mb-5">
-                                        {{-- <input type="button" onclick="myFunction()" class="btn btn-success" value="L1. Cost Sheet"> --}}
-                                        {{-- <a href=" {{route ('prokomF1-tambah-chost-sheet')}}?noproposal" class="btn btn-success">L1. Cost Sheet </a> --}}
-                                        <a href=" {{route('kelengkapan-dokumen-tambah')}} " class="btn btn-success">L2. Kelengkapan Dokumen </a>
-                                        <button class="btn btn-info" type="submit">Submit</button>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Ketentuan & Catatan khusus</label>
+                                        <textarea class="form-control" name="ketentuan_catatan"
+                                            style="height: 100px"></textarea>
                                     </div>
+                                </div>
+                                <div class="col-md-12 form-group text-right mb-5">
+                                    {{-- <input type="button" onclick="myFunction()" class="btn btn-success" value="L1. Cost Sheet"> --}}
+                                    {{-- <a href=" {{route ('prokomF1-tambah-chost-sheet')}}?noproposal" class="btn btn-success">L1. Cost Sheet </a> --}}
+                                    {{-- <a href=" {{route('kelengkapan-dokumen-tambah')}} " class="btn btn-success">L2. Kelengkapan Dokumen </a> --}}
+                                    <button class="btn btn-info" type="submit">Submit</button>
+                                </div>
                                 
-
+                                
                             </div>
                         </div>
-
+                        
                     </form>
                 </div>
-
+                
             </div>
         </div>
     </div>
 @endsection
 
 @push('page-scripts')
-<script type="text/javascript">
-    $(function(){
-     $(".datepicker").datepicker({
-         format: 'yyyy-mm-dd',
-         autoclose: true,
-         todayHighlight: true,
-     });
-    });
-   </script>
+
 
 <script>
     function myFunction() {

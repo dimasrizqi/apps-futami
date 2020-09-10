@@ -7,31 +7,45 @@
             <h1>Home Sales & Commercial </h1>
         </div>
         <div class="section-body">
-            <div class="title m-b-md">
-                <a href="{{ route('prokomF1-tambah') }}" class="btn btn-info">Tambah Data</a>
-                <table class="table table-striped table-bordered table-sm">
+            <div class="table-responsive">
+                <a href="{{ route('prokomF1-tambah') }}" class="btn btn-success">Tambah Data</a><br><br>
+                <table class="table table-bordered table-striped">
                     <tr>
                         <th width="50px">NO.</th>
-                        <th>No Proposal</th>
-                        <th>Nama Program</th>
+                        <th colspan="2" style="text-align: center">No Proposal</th>
+                        
                         <th>L1. Cost Sheet</th>
                         <th>Kelengkapan Dokumen</th>
-                        <th>Action</th>
                     </tr>
-                    @foreach ($data_prokomf1 as $no => $datanya)
+                    @foreach ($data_prokomf1 ?? '' as $no => $datanya)
                         <tr>
                             <td> {{ $no + 1 }} </td>
-                            <td><a href="#">{{ $datanya->nomor_proposal }}</a></td>
-                            <td>{{ $datanya->nama_program }}</td>
-                            <td></td>
-                            <td></td>
+                            <td><a href="{{ route('prokomF1-detail',$datanya->id) }}">{{ $datanya->nomor_proposal }}</a></td>
                             <td>
                                 @if ($message = Session::get('grupnya') == '1')
+                                <a href="{{ route('prokomF1-print', $datanya->id) }}" class="badge badge-info">Print</a>
                                     <a href="{{ route('prokomF1-hapus', $datanya->id) }}"
                                         class="badge badge-danger">Hapus</a>
+                                        
                                 @endif
-                                <a href="{{ route('prokomF1-print', $datanya->id) }}" class="badge badge-info"
-                                    target="_blank">Print</a>
+                                
+                            </td>
+                            
+                            <td>
+                                @if ($datanya->l1_cost_sheet=="") 
+                                    <a href="{{route('prokomF1-tambah-chost-sheet')}}?no_proposal={{$datanya->nomor_proposal}}" class="badge badge-success">+</a> 
+                                @else
+                                <a href="" class="badge badge-info">edit</a> 
+                                <a href="" class="badge badge-info">print</a> 
+                                @endif
+                            </td>
+                            <td>
+                                @if ($datanya->kelengkapan_dokumen=="") 
+                                <a href="{{route('kelengkapan-dokumen-tambah')}}?no_proposal={{$datanya->nomor_proposal}}" class="badge badge-success">+</a> 
+                                @else
+                                <a href="{{route('kelengkapan-dokumen-detail',$datanya->kelengkapan_dokumen)}}" class="badge badge-info">edit</a> 
+                                <a href="{{route('kelengkapan-dokumen-print',$datanya->kelengkapan_dokumen)}}" class="badge badge-info">print</a> 
+                            @endif
                             </td>
                         </tr>
                     @endforeach

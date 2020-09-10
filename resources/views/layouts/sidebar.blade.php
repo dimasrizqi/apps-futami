@@ -43,7 +43,7 @@
                 <a href="#" class="nav-link has-dropdown"><i class="far fa-user"></i> <span>Auth</span></a>
                 <ul class="dropdown-menu">
                   <li><a href="#">Lihat User</a></li>
-                  <li><a href="#">Tambah User</a></li>
+                  <li><a href=" {{route('tambah-user')}} ">Tambah User</a></li>
                   {{-- <li><a href="auth-login.html">Login</a></li>
                   <li><a class="beep beep-sidebar" href="auth-login-2.html">Login 2</a></li>
                   <li><a href="auth-register.html">Register</a></li>

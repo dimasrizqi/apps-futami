@@ -22,8 +22,8 @@
             font-family: 'Times New Roman', Times, serif, sans-serif;
             border-collapse: collapse;
             font-size: 12px;
-            /* table-layout: auto;
-            width: 100%; */
+            table-layout: auto;
+            width: 100%;
         }
 
         td,
@@ -43,7 +43,7 @@
 
 <body>
 
-    <table>
+    <table >
         @foreach ($data_prokomf1 as $no => $datanya)
             <tbody>
                 <tr >

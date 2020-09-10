@@ -1,0 +1,1462 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.18
+-- Dumped by pg_dump version 12.3
+
+-- Started on 2020-09-09 18:42:15
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+--
+-- TOC entry 200 (class 1259 OID 16575)
+-- Name: channel_program; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.channel_program (
+    id integer NOT NULL,
+    channel_program character varying(255) NOT NULL,
+    status integer NOT NULL,
+    kode_channel character varying(255) NOT NULL,
+    keterangan character varying(255)
+);
+
+
+ALTER TABLE public.channel_program OWNER TO postgres;
+
+--
+-- TOC entry 199 (class 1259 OID 16573)
+-- Name: channel_program_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.channel_program_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.channel_program_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2324 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: channel_program_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.channel_program_id_seq OWNED BY public.channel_program.id;
+
+
+--
+-- TOC entry 206 (class 1259 OID 24772)
+-- Name: cost_center; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.cost_center (
+    id integer NOT NULL,
+    id_cost_center integer NOT NULL,
+    name text NOT NULL
+);
+
+
+ALTER TABLE public.cost_center OWNER TO postgres;
+
+--
+-- TOC entry 205 (class 1259 OID 24770)
+-- Name: cost_center_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.cost_center_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cost_center_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2325 (class 0 OID 0)
+-- Dependencies: 205
+-- Name: cost_center_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.cost_center_id_seq OWNED BY public.cost_center.id;
+
+
+--
+-- TOC entry 210 (class 1259 OID 24804)
+-- Name: cost_sheet; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.cost_sheet (
+    id integer NOT NULL,
+    item_cost integer NOT NULL,
+    created timestamp without time zone DEFAULT now() NOT NULL,
+    avg_penjualan integer NOT NULL,
+    target integer NOT NULL,
+    creator integer NOT NULL,
+    no_proposal text NOT NULL
+);
+
+
+ALTER TABLE public.cost_sheet OWNER TO postgres;
+
+--
+-- TOC entry 209 (class 1259 OID 24802)
+-- Name: cost_sheet_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.cost_sheet_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.cost_sheet_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2326 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: cost_sheet_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.cost_sheet_id_seq OWNED BY public.cost_sheet.id;
+
+
+--
+-- TOC entry 191 (class 1259 OID 16500)
+-- Name: crud; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.crud (
+    kode_barang integer,
+    nama_barang character(50),
+    id integer NOT NULL
+);
+
+
+ALTER TABLE public.crud OWNER TO postgres;
+
+--
+-- TOC entry 192 (class 1259 OID 16505)
+-- Name: crud_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.crud_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.crud_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2327 (class 0 OID 0)
+-- Dependencies: 192
+-- Name: crud_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.crud_id_seq OWNED BY public.crud.id;
+
+
+--
+-- TOC entry 190 (class 1259 OID 16490)
+-- Name: failed_jobs; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.failed_jobs (
+    id bigint NOT NULL,
+    connection text NOT NULL,
+    queue text NOT NULL,
+    payload text NOT NULL,
+    exception text NOT NULL,
+    failed_at timestamp(0) without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.failed_jobs OWNER TO postgres;
+
+--
+-- TOC entry 189 (class 1259 OID 16488)
+-- Name: failed_jobs_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.failed_jobs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.failed_jobs_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2328 (class 0 OID 0)
+-- Dependencies: 189
+-- Name: failed_jobs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.failed_jobs_id_seq OWNED BY public.failed_jobs.id;
+
+
+--
+-- TOC entry 208 (class 1259 OID 24785)
+-- Name: item_cost; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.item_cost (
+    id integer NOT NULL,
+    id_cost_center integer NOT NULL,
+    name text NOT NULL,
+    id_item integer NOT NULL
+);
+
+
+ALTER TABLE public.item_cost OWNER TO postgres;
+
+--
+-- TOC entry 207 (class 1259 OID 24783)
+-- Name: item_cost_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.item_cost_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.item_cost_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2329 (class 0 OID 0)
+-- Dependencies: 207
+-- Name: item_cost_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.item_cost_id_seq OWNED BY public.item_cost.id;
+
+
+--
+-- TOC entry 196 (class 1259 OID 16547)
+-- Name: jenis_program; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.jenis_program (
+    id integer NOT NULL,
+    jenis_program character varying(255) NOT NULL,
+    status integer,
+    keterangan character varying(255)
+);
+
+
+ALTER TABLE public.jenis_program OWNER TO postgres;
+
+--
+-- TOC entry 195 (class 1259 OID 16545)
+-- Name: jenis_program_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.jenis_program_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.jenis_program_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2330 (class 0 OID 0)
+-- Dependencies: 195
+-- Name: jenis_program_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.jenis_program_id_seq OWNED BY public.jenis_program.id;
+
+
+--
+-- TOC entry 202 (class 1259 OID 24742)
+-- Name: kelengkapan_dokumen; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.kelengkapan_dokumen (
+    id integer NOT NULL,
+    vendor integer NOT NULL,
+    form_vendor integer,
+    npwp integer,
+    sppkp integer,
+    surat_pernyataan_non_pkp integer,
+    surat_kepemilikan_rekening_bermaterai integer,
+    surat_pernyataan_pemotongan_pph integer,
+    kwitansi integer,
+    faktur integer,
+    surat_perjanjian integer,
+    bast integer,
+    faktur_penjualan integer,
+    copy_po integer,
+    quotation integer,
+    no_proposal text NOT NULL
+);
+
+
+ALTER TABLE public.kelengkapan_dokumen OWNER TO postgres;
+
+--
+-- TOC entry 201 (class 1259 OID 24740)
+-- Name: kelengkapan_dokumen_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.kelengkapan_dokumen_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.kelengkapan_dokumen_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2331 (class 0 OID 0)
+-- Dependencies: 201
+-- Name: kelengkapan_dokumen_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.kelengkapan_dokumen_id_seq OWNED BY public.kelengkapan_dokumen.id;
+
+
+--
+-- TOC entry 198 (class 1259 OID 16563)
+-- Name: klaim_tagihan_ke; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.klaim_tagihan_ke (
+    id integer NOT NULL,
+    klaim_tagihan_ke character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.klaim_tagihan_ke OWNER TO postgres;
+
+--
+-- TOC entry 197 (class 1259 OID 16561)
+-- Name: klaim_tagihan_ke_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.klaim_tagihan_ke_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.klaim_tagihan_ke_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2332 (class 0 OID 0)
+-- Dependencies: 197
+-- Name: klaim_tagihan_ke_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.klaim_tagihan_ke_id_seq OWNED BY public.klaim_tagihan_ke.id;
+
+
+--
+-- TOC entry 204 (class 1259 OID 24748)
+-- Name: lampiran; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.lampiran (
+    id integer NOT NULL,
+    lampiran text NOT NULL,
+    creator integer NOT NULL,
+    created timestamp without time zone DEFAULT now() NOT NULL,
+    no_proposal text NOT NULL
+);
+
+
+ALTER TABLE public.lampiran OWNER TO postgres;
+
+--
+-- TOC entry 203 (class 1259 OID 24746)
+-- Name: lampiran_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.lampiran_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.lampiran_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2333 (class 0 OID 0)
+-- Dependencies: 203
+-- Name: lampiran_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.lampiran_id_seq OWNED BY public.lampiran.id;
+
+
+--
+-- TOC entry 186 (class 1259 OID 16469)
+-- Name: migrations; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.migrations (
+    id integer NOT NULL,
+    migration character varying(255) NOT NULL,
+    batch integer NOT NULL
+);
+
+
+ALTER TABLE public.migrations OWNER TO postgres;
+
+--
+-- TOC entry 185 (class 1259 OID 16467)
+-- Name: migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.migrations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.migrations_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2334 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.migrations_id_seq OWNED BY public.migrations.id;
+
+
+--
+-- TOC entry 194 (class 1259 OID 16513)
+-- Name: prokomf1; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.prokomf1 (
+    id integer NOT NULL,
+    kepada_yth character(50) NOT NULL,
+    di_ketahui character(50) NOT NULL,
+    nama_program character(100) NOT NULL,
+    brand_item character(50) NOT NULL,
+    kode_rkb character(50) NOT NULL,
+    area_program character(50) NOT NULL,
+    region_program character(50) NOT NULL,
+    channel_program character(50) NOT NULL,
+    background_informasi character(50) NOT NULL,
+    ketentuan_catatan character varying(50),
+    pic_brand_commercial character(50),
+    pic_sales_distribution character(50),
+    pic_finance_accounting character(50),
+    mekanisme_program text NOT NULL,
+    no_pr character(50),
+    klaim_tagihan_ke character(50) NOT NULL,
+    metode_klaim character(50) NOT NULL,
+    faktur_pajak character(50) NOT NULL,
+    batas_akhir_klaim date NOT NULL,
+    periode_program_start date NOT NULL,
+    periode_program_end date NOT NULL,
+    nomor_proposal character varying(50) NOT NULL,
+    tanggal_diajukan timestamp without time zone DEFAULT ('now'::text)::date NOT NULL,
+    jenis_program character(50) NOT NULL,
+    revisi_ke integer NOT NULL,
+    status integer NOT NULL,
+    disiapkan_oleh integer NOT NULL,
+    ketentuan_tambahan_operasional character varying(255),
+    l1_cost_sheet integer,
+    kelengkapan_dokumen integer
+);
+
+
+ALTER TABLE public.prokomf1 OWNER TO postgres;
+
+--
+-- TOC entry 193 (class 1259 OID 16511)
+-- Name: prokom_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.prokom_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.prokom_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2335 (class 0 OID 0)
+-- Dependencies: 193
+-- Name: prokom_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.prokom_id_seq OWNED BY public.prokomf1.id;
+
+
+--
+-- TOC entry 212 (class 1259 OID 24816)
+-- Name: rincian_budget; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.rincian_budget (
+    id integer NOT NULL,
+    biaya integer NOT NULL,
+    creator integer NOT NULL,
+    created timestamp without time zone DEFAULT now(),
+    no_proposal text NOT NULL,
+    name text NOT NULL
+);
+
+
+ALTER TABLE public.rincian_budget OWNER TO postgres;
+
+--
+-- TOC entry 211 (class 1259 OID 24814)
+-- Name: rincian_budget_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.rincian_budget_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.rincian_budget_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2336 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: rincian_budget_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.rincian_budget_id_seq OWNED BY public.rincian_budget.id;
+
+
+--
+-- TOC entry 213 (class 1259 OID 24877)
+-- Name: tambah_multi; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.tambah_multi (
+    fullname text,
+    email text,
+    phone text,
+    alamat text,
+    id integer NOT NULL
+);
+
+
+ALTER TABLE public.tambah_multi OWNER TO postgres;
+
+--
+-- TOC entry 214 (class 1259 OID 24885)
+-- Name: tambah_multi_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.tambah_multi_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tambah_multi_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2337 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: tambah_multi_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.tambah_multi_id_seq OWNED BY public.tambah_multi.id;
+
+
+--
+-- TOC entry 188 (class 1259 OID 16477)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.users (
+    id bigint NOT NULL,
+    name character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    email_verified_at timestamp(0) without time zone,
+    password character varying(255) NOT NULL,
+    remember_token character varying(100),
+    created_at timestamp(0) without time zone,
+    updated_at timestamp(0) without time zone,
+    grup integer,
+    creator integer
+);
+
+
+ALTER TABLE public.users OWNER TO postgres;
+
+--
+-- TOC entry 187 (class 1259 OID 16475)
+-- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.users_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2338 (class 0 OID 0)
+-- Dependencies: 187
+-- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- TOC entry 2106 (class 2604 OID 16578)
+-- Name: channel_program id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.channel_program ALTER COLUMN id SET DEFAULT nextval('public.channel_program_id_seq'::regclass);
+
+
+--
+-- TOC entry 2110 (class 2604 OID 24775)
+-- Name: cost_center id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cost_center ALTER COLUMN id SET DEFAULT nextval('public.cost_center_id_seq'::regclass);
+
+
+--
+-- TOC entry 2112 (class 2604 OID 24807)
+-- Name: cost_sheet id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cost_sheet ALTER COLUMN id SET DEFAULT nextval('public.cost_sheet_id_seq'::regclass);
+
+
+--
+-- TOC entry 2101 (class 2604 OID 16507)
+-- Name: crud id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.crud ALTER COLUMN id SET DEFAULT nextval('public.crud_id_seq'::regclass);
+
+
+--
+-- TOC entry 2099 (class 2604 OID 16493)
+-- Name: failed_jobs id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.failed_jobs ALTER COLUMN id SET DEFAULT nextval('public.failed_jobs_id_seq'::regclass);
+
+
+--
+-- TOC entry 2111 (class 2604 OID 24788)
+-- Name: item_cost id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.item_cost ALTER COLUMN id SET DEFAULT nextval('public.item_cost_id_seq'::regclass);
+
+
+--
+-- TOC entry 2104 (class 2604 OID 16550)
+-- Name: jenis_program id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.jenis_program ALTER COLUMN id SET DEFAULT nextval('public.jenis_program_id_seq'::regclass);
+
+
+--
+-- TOC entry 2107 (class 2604 OID 24745)
+-- Name: kelengkapan_dokumen id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.kelengkapan_dokumen ALTER COLUMN id SET DEFAULT nextval('public.kelengkapan_dokumen_id_seq'::regclass);
+
+
+--
+-- TOC entry 2105 (class 2604 OID 16566)
+-- Name: klaim_tagihan_ke id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.klaim_tagihan_ke ALTER COLUMN id SET DEFAULT nextval('public.klaim_tagihan_ke_id_seq'::regclass);
+
+
+--
+-- TOC entry 2108 (class 2604 OID 24751)
+-- Name: lampiran id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.lampiran ALTER COLUMN id SET DEFAULT nextval('public.lampiran_id_seq'::regclass);
+
+
+--
+-- TOC entry 2097 (class 2604 OID 16472)
+-- Name: migrations id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.migrations ALTER COLUMN id SET DEFAULT nextval('public.migrations_id_seq'::regclass);
+
+
+--
+-- TOC entry 2102 (class 2604 OID 16516)
+-- Name: prokomf1 id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.prokomf1 ALTER COLUMN id SET DEFAULT nextval('public.prokom_id_seq'::regclass);
+
+
+--
+-- TOC entry 2114 (class 2604 OID 24819)
+-- Name: rincian_budget id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.rincian_budget ALTER COLUMN id SET DEFAULT nextval('public.rincian_budget_id_seq'::regclass);
+
+
+--
+-- TOC entry 2116 (class 2604 OID 24887)
+-- Name: tambah_multi id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tambah_multi ALTER COLUMN id SET DEFAULT nextval('public.tambah_multi_id_seq'::regclass);
+
+
+--
+-- TOC entry 2098 (class 2604 OID 16480)
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- TOC entry 2304 (class 0 OID 16575)
+-- Dependencies: 200
+-- Data for Name: channel_program; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.channel_program (id, channel_program, status, kode_channel, keterangan) FROM stdin;
+3	GT	1	GT	GT
+4	MT-NA	1	MT-NA	MT-NA
+5	3	1	MT-LMT	Modern Trade LMT
+8	MT - INSTITUSI	1	MT - INSTITUSI	MT - INSTITUSI
+\.
+
+
+--
+-- TOC entry 2310 (class 0 OID 24772)
+-- Dependencies: 206
+-- Data for Name: cost_center; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.cost_center (id, id_cost_center, name) FROM stdin;
+1	451	Product Listing
+2	452	Selling Operation
+3	453	Trade Promo
+\.
+
+
+--
+-- TOC entry 2314 (class 0 OID 24804)
+-- Dependencies: 210
+-- Data for Name: cost_sheet; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.cost_sheet (id, item_cost, created, avg_penjualan, target, creator, no_proposal) FROM stdin;
+47	3	2020-09-04 11:48:26.030794	3	5	12	Proposal 0003
+48	10	2020-09-04 14:48:24.765257	544356345	346346	3	31231
+49	3	2020-09-09 11:53:27.627805	100	500	12	JKT-001
+\.
+
+
+--
+-- TOC entry 2295 (class 0 OID 16500)
+-- Dependencies: 191
+-- Data for Name: crud; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.crud (kode_barang, nama_barang, id) FROM stdin;
+123	WC                                                	1
+1010	wastafel                                          	2
+1221	kompas                                            	3
+8080	woke                                              	4
+\.
+
+
+--
+-- TOC entry 2294 (class 0 OID 16490)
+-- Dependencies: 190
+-- Data for Name: failed_jobs; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.failed_jobs (id, connection, queue, payload, exception, failed_at) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2312 (class 0 OID 24785)
+-- Dependencies: 208
+-- Data for Name: item_cost; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.item_cost (id, id_cost_center, name, id_item) FROM stdin;
+1	451	Listing General Trade	4510
+2	451	Listing Modern Trade (LMT)	4511
+3	451	Listing B2B & Sp Channel	4512
+4	451	Listing Modern Institusi	4513
+8	451	Listing Modern Trade (NA)	4514
+9	452	Motoris / Kanvaser	4520
+10	452	MD / Promotor	4521
+11	452	SPG & Push Selling	4522
+12	452	Salesman Exclusive	4523
+13	453	Display / Visibility	4530
+15	453	Konsumen Promo	4532
+14	453	Product Flushing	4531
+17	453	Retail / Shop Promo	4533
+18	453	Isentif Salesman	4534
+\.
+
+
+--
+-- TOC entry 2300 (class 0 OID 16547)
+-- Dependencies: 196
+-- Data for Name: jenis_program; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.jenis_program (id, jenis_program, status, keterangan) FROM stdin;
+14	Program Selling Out / Consumer Promo	1	\N
+15	Sales Exclusive (Fee & Insentif)	1	\N
+16	Sales Exclusive (Tunjangan Operasional)	1	\N
+18	Listing Fee	1	\N
+19	Support Program (Mailer / Woobler)	1	\N
+20	Support Penempatan Materi	1	\N
+21	Pembelian Materi Promosi	1	\N
+22	Hadiah	1	\N
+13	Program Selling In	1	\N
+\.
+
+
+--
+-- TOC entry 2306 (class 0 OID 24742)
+-- Dependencies: 202
+-- Data for Name: kelengkapan_dokumen; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.kelengkapan_dokumen (id, vendor, form_vendor, npwp, sppkp, surat_pernyataan_non_pkp, surat_kepemilikan_rekening_bermaterai, surat_pernyataan_pemotongan_pph, kwitansi, faktur, surat_perjanjian, bast, faktur_penjualan, copy_po, quotation, no_proposal) FROM stdin;
+16	0	0	0	0	0	0	0	\N	\N	\N	\N	\N	\N	\N	Proposal 0003
+17	0	0	0	0	0	0	0	\N	\N	\N	\N	\N	\N	\N	31231
+\.
+
+
+--
+-- TOC entry 2302 (class 0 OID 16563)
+-- Dependencies: 198
+-- Data for Name: klaim_tagihan_ke; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.klaim_tagihan_ke (id, klaim_tagihan_ke) FROM stdin;
+1	Langsung Ke Savoria
+2	Lewat SCM klaim ke Savoria
+\.
+
+
+--
+-- TOC entry 2308 (class 0 OID 24748)
+-- Dependencies: 204
+-- Data for Name: lampiran; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.lampiran (id, lampiran, creator, created, no_proposal) FROM stdin;
+4	test1	3	2020-09-03 15:47:56.589889	jkt-001-90
+5	test2	3	2020-09-03 15:47:56.589889	jkt-001-90
+6	test test 1	3	2020-09-03 16:04:35.627013	jkt-001-91
+7	test test 2	3	2020-09-03 16:04:35.627013	jkt-001-91
+8	test test test 1	3	2020-09-03 16:08:10.222671	jkt-001-92
+9	test test 2	3	2020-09-03 16:08:10.222671	jkt-001-92
+10	test test 3	3	2020-09-03 16:08:10.222671	jkt-001-92
+11	111111	3	2020-09-03 16:44:40.149318	jkt-001-92
+12	2222222222	3	2020-09-03 16:44:40.149318	jkt-001-92
+13	33333333333333333	3	2020-09-03 16:44:40.149318	jkt-001-92
+14	44444444444444444	3	2020-09-03 16:44:40.149318	jkt-001-92
+15	55555555555555	3	2020-09-03 16:44:40.149318	jkt-001-92
+16	6666666666666	3	2020-09-03 16:44:40.149318	jkt-001-92
+17	7777777777777778	3	2020-09-03 16:44:40.149318	jkt-001-92
+18	888888888888888	3	2020-09-03 16:44:40.149318	jkt-001-92
+19	sfasdg awgfwarvtwr	3	2020-09-04 11:29:35.094135	f34g235g
+20	qwrcwqrwqr	3	2020-09-04 11:29:35.094135	f34g235g
+21	222	3	2020-09-04 11:30:24.991039	PRP/JKT/001
+22	ffff	3	2020-09-04 11:32:47.316906	f34g235g
+23	ggg	3	2020-09-04 11:32:47.316906	f34g235g
+24	ffff	3	2020-09-04 11:33:04.812772	f34g235g
+25	ggg	3	2020-09-04 11:33:04.812772	f34g235g
+26	ccc	3	2020-09-04 11:36:12.125545	PRP/JKT/001
+27	6666	3	2020-09-04 11:36:39.492943	189098
+29	ghjfgjry	3	2020-09-04 12:56:11.618958	Proposal 0003
+30	rtyurtyuty	3	2020-09-04 13:07:20.356514	31231
+31	rtyurtyu	3	2020-09-04 13:07:20.356514	31231
+\.
+
+
+--
+-- TOC entry 2290 (class 0 OID 16469)
+-- Dependencies: 186
+-- Data for Name: migrations; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.migrations (id, migration, batch) FROM stdin;
+1	2014_10_12_000000_create_users_table	1
+2	2019_08_19_000000_create_failed_jobs_table	1
+\.
+
+
+--
+-- TOC entry 2298 (class 0 OID 16513)
+-- Dependencies: 194
+-- Data for Name: prokomf1; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.prokomf1 (id, kepada_yth, di_ketahui, nama_program, brand_item, kode_rkb, area_program, region_program, channel_program, background_informasi, ketentuan_catatan, pic_brand_commercial, pic_sales_distribution, pic_finance_accounting, mekanisme_program, no_pr, klaim_tagihan_ke, metode_klaim, faktur_pajak, batas_akhir_klaim, periode_program_start, periode_program_end, nomor_proposal, tanggal_diajukan, jenis_program, revisi_ke, status, disiapkan_oleh, ketentuan_tambahan_operasional, l1_cost_sheet, kelengkapan_dokumen) FROM stdin;
+77	Tim Sales                                         	ALL user                                          	PROKOM TEST 13                                                                                      	ALL SKU                                           	RKB012                                            	DKI JAKARTA                                       	ALL REGION                                        	5                                                 	Background                                        	\N	\N	\N	\N	Mekanisme	\N	1                                                 	Rafraksi Toko                                     	Faktur PPN (PKP)                                  	2020-12-31	2020-09-01	2020-09-30	Proposal 0003	2020-09-04 00:00:00	18                                                	0	1	12	\N	47	16
+78	123123                                            	12312                                             	123123                                                                                              	123123                                            	12312                                             	123123                                            	1231                                              	4                                                 	12312311                                          	312312	123123                                            	123121                                            	23123                                             	2312	3123                                              	1                                                 	Free Good                                         	Faktur NON PKP                                    	2020-09-17	2020-09-23	2020-09-20	31231	2020-09-04 00:00:00	15                                                	0	1	3	\N	48	17
+80	ergf34g                                           	3q4g3q5                                           	34g34                                                                                               	g34g                                              	g3g34                                             	ghrth                                             	therthher                                         	3                                                 	herthret                                          	hreth	rthert                                            	hreth                                             	hreth                                             	hrthrte	g34g34                                            	1                                                 	Free Good                                         	Faktur NON PKP                                    	2020-09-30	2020-08-31	2020-09-17	543q4g	2020-09-04 00:00:00	20                                                	0	1	3	\N	\N	\N
+83	RSO Jakarta                                       	Pak Christian                                     	Beli 2 Gratis 1                                                                                     	Yuzu Isotonik                                     	001                                               	Jakarta Barat                                     	RSO Jakarta                                       	3                                                 	ada                                               	addaa	\N	\N	\N	ad	\N	1                                                 	Potong Faktur Penjualan                           	Faktur PPN (PKP)                                  	2020-09-10	2020-09-01	2020-09-30	JKT-001	2020-09-08 00:00:00	22                                                	0	0	12	\N	49	\N
+\.
+
+
+--
+-- TOC entry 2316 (class 0 OID 24816)
+-- Dependencies: 212
+-- Data for Name: rincian_budget; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.rincian_budget (id, biaya, creator, created, no_proposal, name) FROM stdin;
+43	123123	3	2020-09-04 11:08:21.523822	f34g235g	adfawwaefa
+44	12312312	3	2020-09-04 11:08:21.523822	f34g235g	asfsadfsd
+45	123123	3	2020-09-04 11:08:21.523822	f34g235g	asfdsadf
+46	123123	3	2020-09-04 11:10:44.668279	f34g235g	adfawwaefa
+47	12312312	3	2020-09-04 11:10:44.668279	f34g235g	asfsadfsd
+48	123123	3	2020-09-04 11:10:44.668279	f34g235g	asfdsadf
+49	123123	3	2020-09-04 11:10:47.493708	f34g235g	adfawwaefa
+50	12312312	3	2020-09-04 11:10:47.493708	f34g235g	asfsadfsd
+51	123123	3	2020-09-04 11:10:47.493708	f34g235g	asfdsadf
+52	123123	3	2020-09-04 11:11:46.755961	f34g235g	adfawwaefa
+53	12312312	3	2020-09-04 11:11:46.755961	f34g235g	asfsadfsd
+54	123123	3	2020-09-04 11:11:46.755961	f34g235g	asfdsadf
+55	12312	3	2020-09-04 11:16:05.218752	f34g235g	sdqdqw
+56	12312	3	2020-09-04 11:16:05.218752	f34g235g	asdasd
+57	12312	3	2020-09-04 11:16:05.291646	f34g235g	sdqdqw
+58	12312	3	2020-09-04 11:16:05.291646	f34g235g	asdasd
+59	12312	3	2020-09-04 11:16:21.841604	f34g235g	sdqdqw
+60	12312	3	2020-09-04 11:16:21.841604	f34g235g	dsdqw
+61	2143123	3	2020-09-04 11:17:09.402211	f34g235g	sadfsdfasd
+62	213121	3	2020-09-04 11:17:09.402211	f34g235g	safsadf
+63	2143123	3	2020-09-04 11:17:09.446264	f34g235g	sadfsdfasd
+64	213121	3	2020-09-04 11:17:09.446264	f34g235g	safsadf
+65	2143123	3	2020-09-04 11:17:42.528226	f34g235g	sadfsdfasd
+66	213121	3	2020-09-04 11:17:42.528226	f34g235g	safsadf
+67	2143123	3	2020-09-04 11:21:42.180146	f34g235g	sadfsdfasd
+68	213121	3	2020-09-04 11:21:42.180146	f34g235g	safsadf
+69	2143123	3	2020-09-04 11:22:11.383681	f34g235g	sadfsdfasd
+70	213121	3	2020-09-04 11:22:11.383681	f34g235g	safsadf
+71	2143123	3	2020-09-04 11:22:22.744823	f34g235g	sadfsdfasd
+72	213121	3	2020-09-04 11:22:22.744823	f34g235g	safsadf
+73	2143123	3	2020-09-04 11:22:25.891436	f34g235g	sadfsdfasd
+74	213121	3	2020-09-04 11:22:25.891436	f34g235g	safsadf
+75	2143123	3	2020-09-04 11:22:36.366335	f34g235g	sadfsdfasd
+76	213121	3	2020-09-04 11:22:36.366335	f34g235g	safsadf
+77	2143123	3	2020-09-04 11:23:15.854637	f34g235g	sadfsdfasd
+78	213121	3	2020-09-04 11:23:15.854637	f34g235g	safsadf
+79	2143123	3	2020-09-04 11:23:46.848175	f34g235g	sadfsdfasd
+80	213121	3	2020-09-04 11:23:46.848175	f34g235g	safsadf
+81	2143123	3	2020-09-04 11:23:55.47256	f34g235g	sadfsdfasd
+82	213121	3	2020-09-04 11:23:55.47256	f34g235g	safsadf
+83	2143123	3	2020-09-04 11:24:54.922023	f34g235g	sadfsdfasd
+84	213121	3	2020-09-04 11:24:54.922023	f34g235g	safsadf
+85	2143123	3	2020-09-04 11:25:16.102215	f34g235g	sadfsdfasd
+86	213121	3	2020-09-04 11:25:16.102215	f34g235g	safsadf
+87	2143123	3	2020-09-04 11:26:13.498353	f34g235g	sadfsdfasd
+88	213121	3	2020-09-04 11:26:13.498353	f34g235g	safsadf
+89	2143123	3	2020-09-04 11:26:50.144363	f34g235g	sadfsdfasd
+90	213121	3	2020-09-04 11:26:50.144363	f34g235g	safsadf
+91	213123	3	2020-09-04 11:28:09.725941	Proposal 033	sadfasdf
+92	10000	12	2020-09-04 11:48:26.025261	Proposal 0003	banner
+93	20000	12	2020-09-04 11:48:26.025261	Proposal 0003	SPG
+94	35000	12	2020-09-04 11:48:26.025261	Proposal 0003	lahan
+95	1000000	3	2020-09-04 14:48:24.760163	31231	wefsdfsd
+96	10101010	3	2020-09-04 14:48:24.760163	31231	hjkfghj
+97	75000	12	2020-09-09 11:53:27.622087	JKT-001	SPG
+98	125800	12	2020-09-09 11:53:27.622087	JKT-001	banner
+\.
+
+
+--
+-- TOC entry 2317 (class 0 OID 24877)
+-- Dependencies: 213
+-- Data for Name: tambah_multi; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.tambah_multi (fullname, email, phone, alamat, id) FROM stdin;
+name	email	phone	address	4
+Rohmat	rohmat@kuy.com	123123	jakarta	5
+meli	meli@juni.com	gwedgsd	123123	6
+nasdfasdf 1	kljhklj1hklhj1	1jhlkljhlkjh1	lkjhlkjhklj1h	7
+lkj;lhj;lkj2;lkj	;lkj;lkjklj2;lk	;lkj;lkj;lk2	m;lnkjbhkl2	8
+\.
+
+
+--
+-- TOC entry 2292 (class 0 OID 16477)
+-- Dependencies: 188
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (id, name, email, email_verified_at, password, remember_token, created_at, updated_at, grup, creator) FROM stdin;
+3	Radja Rizqi	radja.r.ramadhan@futami.co.id	\N	$2y$10$ErmnRTBEBTrhd5bOGutiO.DhVkVtHl.lMUs9kG8coA5ZCfqP0Rxk2	H7Viy1OMMfT605gWNHmQMJTBMtTD5L2bAjNf8a3Nhd37XsBGes	2020-08-16 06:50:55	2020-08-16 07:41:09	1	\N
+1	sales	sales@savoria.id	\N	$2y$10$3UR4kUadyj4TT23aX86LSOXwvO3dVsT9M8UMOoOaT6rCQF/S.ls1i	l0HkUGuN72Tqy8NhC3yqJJ8dzg1gtTxTRCJm8GIikaoaemLPfzsoLOQfjgnQ	2020-08-14 03:12:01	2020-08-14 03:12:01	2	\N
+9	sales3	sales3@savoria.id	\N	$2y$10$D9RR6QGF8k/Scw6dTgrDWuSkbzLc6lLOh/vLVBAji/H.lgfdvf7rK	OGKYwxnbjU2AFzb4Vfyj9x2bvwd4aUltjlOauXfYc3ShXhW1PB	2020-08-16 06:50:55	2020-08-16 06:50:55	2	\N
+11	sales bandung	sales.bandung@savoria.id	\N	$2y$10$aTDLBDJqhzKxZ.fRGwDSi.XFovayKWnlrm.hsg7bUjE43c7P6122i	MKDev28yVzZcIUDKimjyGol6D0NRw9LqZ2dGg41STIRhd4fQNv	2020-08-16 07:43:21	2020-08-16 07:43:21	1	\N
+12	Lucas Ignatius	lucas.i.tjahjadi@futami.co.id	\N	$2y$10$d2peylW08oXY85PhctxahuOgNNQpPEfCxvLxNkr1JYkjIOKJwIogG	\N	2020-08-19 02:09:38	2020-08-19 02:09:38	1	\N
+13	Irwan Kurniawan	irwan.k.mahmud@futami.co.id	\N	$2y$10$U/EcZJMLCia647jqET8IUerl7p5.YXNrmodWt85GXvyKQggU.roNG	\N	\N	\N	\N	\N
+14	sales jakarta	sales.jakarta@savoria.co.id	\N	$2y$10$8sNAGRQhGeOJpstmW5bxaulpy83WLMZVU4Z/0c8OvlaE4sOK3EhU.	jJFnAiTR7Bce3H91n6dPnBp6r6lkONaCZv09efem	\N	\N	\N	3
+\.
+
+
+--
+-- TOC entry 2339 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: channel_program_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.channel_program_id_seq', 8, true);
+
+
+--
+-- TOC entry 2340 (class 0 OID 0)
+-- Dependencies: 205
+-- Name: cost_center_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.cost_center_id_seq', 3, true);
+
+
+--
+-- TOC entry 2341 (class 0 OID 0)
+-- Dependencies: 209
+-- Name: cost_sheet_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.cost_sheet_id_seq', 49, true);
+
+
+--
+-- TOC entry 2342 (class 0 OID 0)
+-- Dependencies: 192
+-- Name: crud_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.crud_id_seq', 4, true);
+
+
+--
+-- TOC entry 2343 (class 0 OID 0)
+-- Dependencies: 189
+-- Name: failed_jobs_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.failed_jobs_id_seq', 1, false);
+
+
+--
+-- TOC entry 2344 (class 0 OID 0)
+-- Dependencies: 207
+-- Name: item_cost_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.item_cost_id_seq', 18, true);
+
+
+--
+-- TOC entry 2345 (class 0 OID 0)
+-- Dependencies: 195
+-- Name: jenis_program_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.jenis_program_id_seq', 22, true);
+
+
+--
+-- TOC entry 2346 (class 0 OID 0)
+-- Dependencies: 201
+-- Name: kelengkapan_dokumen_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.kelengkapan_dokumen_id_seq', 17, true);
+
+
+--
+-- TOC entry 2347 (class 0 OID 0)
+-- Dependencies: 197
+-- Name: klaim_tagihan_ke_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.klaim_tagihan_ke_id_seq', 2, true);
+
+
+--
+-- TOC entry 2348 (class 0 OID 0)
+-- Dependencies: 203
+-- Name: lampiran_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.lampiran_id_seq', 32, true);
+
+
+--
+-- TOC entry 2349 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.migrations_id_seq', 2, true);
+
+
+--
+-- TOC entry 2350 (class 0 OID 0)
+-- Dependencies: 193
+-- Name: prokom_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.prokom_id_seq', 83, true);
+
+
+--
+-- TOC entry 2351 (class 0 OID 0)
+-- Dependencies: 211
+-- Name: rincian_budget_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.rincian_budget_id_seq', 98, true);
+
+
+--
+-- TOC entry 2352 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: tambah_multi_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.tambah_multi_id_seq', 8, true);
+
+
+--
+-- TOC entry 2353 (class 0 OID 0)
+-- Dependencies: 187
+-- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.users_id_seq', 15, true);
+
+
+--
+-- TOC entry 2140 (class 2606 OID 16582)
+-- Name: channel_program channel_program_channel_program_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.channel_program
+    ADD CONSTRAINT channel_program_channel_program_key UNIQUE (channel_program);
+
+
+--
+-- TOC entry 2142 (class 2606 OID 16587)
+-- Name: channel_program channel_program_kode_channel_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.channel_program
+    ADD CONSTRAINT channel_program_kode_channel_key UNIQUE (kode_channel);
+
+
+--
+-- TOC entry 2144 (class 2606 OID 16580)
+-- Name: channel_program channel_program_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.channel_program
+    ADD CONSTRAINT channel_program_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2152 (class 2606 OID 24828)
+-- Name: cost_center cost_center_id_cost_center_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cost_center
+    ADD CONSTRAINT cost_center_id_cost_center_key UNIQUE (id_cost_center);
+
+
+--
+-- TOC entry 2154 (class 2606 OID 24830)
+-- Name: cost_center cost_center_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cost_center
+    ADD CONSTRAINT cost_center_name_key UNIQUE (name);
+
+
+--
+-- TOC entry 2156 (class 2606 OID 24780)
+-- Name: cost_center cost_center_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cost_center
+    ADD CONSTRAINT cost_center_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2164 (class 2606 OID 24961)
+-- Name: cost_sheet cost_sheet_no_proposal_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cost_sheet
+    ADD CONSTRAINT cost_sheet_no_proposal_key UNIQUE (no_proposal);
+
+
+--
+-- TOC entry 2166 (class 2606 OID 24810)
+-- Name: cost_sheet cost_sheet_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cost_sheet
+    ADD CONSTRAINT cost_sheet_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2124 (class 2606 OID 16499)
+-- Name: failed_jobs failed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.failed_jobs
+    ADD CONSTRAINT failed_jobs_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2158 (class 2606 OID 24801)
+-- Name: item_cost item_cost_id_item_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.item_cost
+    ADD CONSTRAINT item_cost_id_item_key UNIQUE (id_item);
+
+
+--
+-- TOC entry 2160 (class 2606 OID 24799)
+-- Name: item_cost item_cost_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.item_cost
+    ADD CONSTRAINT item_cost_name_key UNIQUE (name);
+
+
+--
+-- TOC entry 2162 (class 2606 OID 24795)
+-- Name: item_cost item_cost_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.item_cost
+    ADD CONSTRAINT item_cost_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2132 (class 2606 OID 16560)
+-- Name: jenis_program jenis_program_jenis_program_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.jenis_program
+    ADD CONSTRAINT jenis_program_jenis_program_key UNIQUE (jenis_program);
+
+
+--
+-- TOC entry 2134 (class 2606 OID 16558)
+-- Name: jenis_program jenis_program_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.jenis_program
+    ADD CONSTRAINT jenis_program_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2146 (class 2606 OID 24912)
+-- Name: kelengkapan_dokumen kelengkapan_dokumen_no_proposal_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.kelengkapan_dokumen
+    ADD CONSTRAINT kelengkapan_dokumen_no_proposal_key UNIQUE (no_proposal);
+
+
+--
+-- TOC entry 2136 (class 2606 OID 16572)
+-- Name: klaim_tagihan_ke klaim_tagihan_ke_klaim_tagihan_ke_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.klaim_tagihan_ke
+    ADD CONSTRAINT klaim_tagihan_ke_klaim_tagihan_ke_key UNIQUE (klaim_tagihan_ke);
+
+
+--
+-- TOC entry 2138 (class 2606 OID 16568)
+-- Name: klaim_tagihan_ke klaim_tagihan_ke_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.klaim_tagihan_ke
+    ADD CONSTRAINT klaim_tagihan_ke_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2150 (class 2606 OID 24764)
+-- Name: lampiran lampiran_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.lampiran
+    ADD CONSTRAINT lampiran_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2118 (class 2606 OID 16474)
+-- Name: migrations migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.migrations
+    ADD CONSTRAINT migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2148 (class 2606 OID 24760)
+-- Name: kelengkapan_dokumen primary_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.kelengkapan_dokumen
+    ADD CONSTRAINT primary_key PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2126 (class 2606 OID 16518)
+-- Name: prokomf1 prokom_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.prokomf1
+    ADD CONSTRAINT prokom_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2128 (class 2606 OID 24739)
+-- Name: prokomf1 prokomf1_kelengkapan_dokumen_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.prokomf1
+    ADD CONSTRAINT prokomf1_kelengkapan_dokumen_key UNIQUE (kelengkapan_dokumen);
+
+
+--
+-- TOC entry 2130 (class 2606 OID 24737)
+-- Name: prokomf1 prokomf1_l1_cost_sheet_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.prokomf1
+    ADD CONSTRAINT prokomf1_l1_cost_sheet_key UNIQUE (l1_cost_sheet);
+
+
+--
+-- TOC entry 2168 (class 2606 OID 24821)
+-- Name: rincian_budget rincian_budget_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.rincian_budget
+    ADD CONSTRAINT rincian_budget_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2170 (class 2606 OID 24895)
+-- Name: tambah_multi tambah_multi_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tambah_multi
+    ADD CONSTRAINT tambah_multi_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2120 (class 2606 OID 16487)
+-- Name: users users_email_unique; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_email_unique UNIQUE (email);
+
+
+--
+-- TOC entry 2122 (class 2606 OID 16485)
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2171 (class 2606 OID 24831)
+-- Name: item_cost item_cost_id_cost_center_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.item_cost
+    ADD CONSTRAINT item_cost_id_cost_center_fkey FOREIGN KEY (id_cost_center) REFERENCES public.cost_center(id_cost_center);
+
+
+-- Completed on 2020-09-09 18:42:15
+
+--
+-- PostgreSQL database dump complete
+--
+
