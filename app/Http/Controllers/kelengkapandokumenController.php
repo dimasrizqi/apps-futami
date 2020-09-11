@@ -12,7 +12,8 @@ class kelengkapandokumenController extends Controller
         return view('prokomF1.kelengkapandokumen.tambah');
     }
     public function detail(Request $request){
-        return view('prokomF1.kelengkapandokumen.detail');
+        $kelengkapan_dokumen=DB::table('kelengkapan_dokumen')->where('id',$request->id)->get();
+        return view('prokomF1.kelengkapandokumen.detail',['kd'=>$kelengkapan_dokumen]);
     }
     public function print(Request $request){
         return view('prokomF1.kelengkapandokumen.print');

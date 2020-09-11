@@ -98,72 +98,61 @@ class prokomController extends Controller
     }
 
     public function update(Request $request){
+        // dd($request->all());
+        
         $revisi = $request->revisi_ke + 1;
         // dd($revisi);
-        $kiweri = DB::table('prokomf1')
-              ->insert(array(
-                  'kepada_yth'=> $request->kepada_yth, 
-              'nomor_proposal'=>$request->nomor_proposal, 
-              'kode_rkb'=>$request->nomor_proposal, 
-              'nama_program'=>$request->nama_program, 
-              'di_ketahui'=>$request->di_ketahui, 
-              'brand_item'=>$request->brand_item, 
-              'area_program'=>$request->area_program, 
-              'region_program'=>$request->region_program, 
-              'revisi_ke'=> $revisi,    
-              'channel_program'=>$request->channel_program, 
-              'background_informasi'=>$request->background_informasi, 
-              'ketentuan_catatan'=>$request->ketentuan_catatan, 
-              'pic_brand_commercial'=>$request->pic_brand_commercial, 
-              'pic_sales_distribution'=>$request->pic_sales_distribution, 
-              'pic_finance_accounting'=>$request->pic_finance_accounting,  
-              'mekanisme_program'=>$request->mekanisme_program, 
-              'no_pr'=>$request->no_pr, 
-              'klaim_tagihan_ke'=>$request->klaim_tagihan_ke, 
-              'metode_klaim'=>$request->metode_klaim, 
-              'faktur_pajak'=>$request->faktur_pajak,  
-              'disiapkan_oleh'=>$request->disiapkan_oleh, 
-              'batas_akhir_klaim'=>$request->batas_akhir_klaim, 
-              'periode_program_start'=>$request->periode_program_start, 
-              'periode_program_end'=>$request->periode_program_end,
-              'jenis_program'=>$request->jenis_program,
-              'status'=>'1', 
-              'ketentuan_tambahan_operasional'=>$request->ketentuan_tambahan_operasional,
-              'l1_cost_sheet'=>$request->l1_cost_sheet,
-              'kelengkapan_dokumen'=>$request->kelengkapan_dokumen,
+        
+    
+    
+    $kiweri=DB::table('prokomf1')
+    ->insert(array(
+        'kepada_yth'=> $request->kepada_yth, 
+        'nomor_proposal'=>$request->nomor_proposal, 
+        'kode_rkb'=>$request->nomor_proposal, 
+        'nama_program'=>$request->nama_program, 
+        'di_ketahui'=>$request->di_ketahui, 
+        'brand_item'=>$request->brand_item, 
+        'area_program'=>$request->area_program, 
+        'region_program'=>$request->region_program, 
+        'revisi_ke'=> $revisi,    
+        'channel_program'=>$request->channel_program, 
+        'background_informasi'=>$request->background_informasi, 
+            'ketentuan_catatan'=>$request->ketentuan_catatan, 
+            'pic_brand_commercial'=>$request->pic_brand_commercial, 
+            'pic_sales_distribution'=>$request->pic_sales_distribution, 
+            'pic_finance_accounting'=>$request->pic_finance_accounting,  
+            'mekanisme_program'=>$request->mekanisme_program, 
+            'no_pr'=>$request->no_pr, 
+            'klaim_tagihan_ke'=>$request->klaim_tagihan_ke, 
+            'metode_klaim'=>$request->metode_klaim, 
+            'faktur_pajak'=>$request->faktur_pajak,  
+            'disiapkan_oleh'=>$request->disiapkan_oleh, 
+            'batas_akhir_klaim'=>$request->batas_akhir_klaim, 
+            'periode_program_start'=>$request->periode_program_start, 
+            'periode_program_end'=>$request->periode_program_end,
+            'jenis_program'=>$request->jenis_program,
+            'status'=>'1', 
+            'ketentuan_tambahan_operasional'=>$request->ketentuan_tambahan_operasional,
+            'l1_cost_sheet'=>$request->l1_cost_sheet,
+            'kelengkapan_dokumen'=>$request->kelengkapan_dokumen,
 
-              ));
-                DB::table('prokomf1')
-                ->where('id', $request->id)
-                ->update(['status' => 0]);
-                $data_jenis_program = DB::table('jenis_program')
-                ->where('status','1')
-                ->orderBy('jenis_program','asc')->>>>>
-                ->get() ;
-            $data_channel_program = DB::table('channel_program')
-                ->where('status','1')
-                ->orderBy('channel_program','asc')
-                ->get();
-            $data_prokomf1 = DB::table('prokomf1')
-                ->where('id',$request->id)
-                ->get();
-            $no_proposal=$data_prokomf1[0]->nomor_proposal;
-            $creator=DB::table('users')
-                ->get();
-            $klaim=DB::table('klaim_tagihan_ke')
-                ->get();
-            return view('prokomF1.detail',['data_prokomf1' => $data_prokomf1,
-            'data_jenis_program'=>$data_jenis_program,
-            'data_channel_program'=>$data_channel_program,
-            'creator'=>$creator,
-            'klaim'=>$klaim]);
-    }
-    public function hapus(Request $request){
+        ));
+        if($kiweri==true){
+            DB::table('prokomf1')
+            ->where('id', $request->id)
+            ->update(['status' => 0]);
+        return redirect()->route('prokomF1-index');        
+        }else
+        echo"gagal";
+        }
+            
+        public function hapus(Request $request){
         DB::table('prokomf1')
                 ->where('id', $request->id)
                 ->update(['status' => 0]);
         return redirect()->back();
-    }
+        }
 
     public function simpan(Request $request){
         $revisi_ke = '0';

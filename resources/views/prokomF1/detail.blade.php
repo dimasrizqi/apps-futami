@@ -48,7 +48,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>* Nomor Proposal</label>
-                                            <input type="text" name="nomor_proposal" class="form-control" value="{{ $datanya->nomor_proposal }}">
+                                            <input type="text" name="nomor_proposal" class="form-control" value="{{ $datanya->nomor_proposal }}" readonly>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -239,7 +239,7 @@
                                         @if ($datanya->l1_cost_sheet=="")
                                         <input class="form-control" value="Belum Membuat L1 Cost Sheet" disabled>
                                         @else
-                                            <input class="form-control" value="{{$datanya->l1_cost_sheet}}" disabled>
+                                            <input class="form-control"  value="{{$datanya->l1_cost_sheet}}" name="l1_cost_sheet" readonly >
                                         @endif
                                     </div>
                                 </div>
@@ -250,7 +250,7 @@
                                         @if ($datanya->l1_cost_sheet=="")
                                         <input class="form-control" value="Belum Membuat L2 Kelengkapan " disabled>
                                         @else
-                                            <input class="form-control" value="{{$datanya->kelengkapan_dokumen}}" disabled>
+                                            <input class="form-control" value="{{$datanya->kelengkapan_dokumen}}"  name="kelengkapan_dokumen" readonly>
                                         @endif
                                     </div>
                                 </div>

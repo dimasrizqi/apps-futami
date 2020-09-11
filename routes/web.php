@@ -75,13 +75,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/prokom/kelengkapandokumen/lampiran', 'kelengkapandokumenController@tambahlampiran' )-> name('kelengkapan-dokumen-tambah-lampiran') ;
     Route::post('/prokom/kelengkapandokumen/simpanlampiran', 'kelengkapandokumenController@simpanlampiran' )-> name('kelengkapan-dokumen-simpan-lampiran') ;
     
-    //prokom view with get id
-    Route::get('/prokom/print/{id}', 'prokomController@print' ) -> name('prokomF1-print');
     Route::delete('/prokom/jenisprogram/hapus/{id}', 'prokomJenisProgramController@hapus' ) -> name('prokomF1-jenis-program-hapus');
     Route::delete('/prokom/channelprogram/hapus/{id}', 'prokomChannelController@hapus' ) -> name('prokomF1-channel-program-hapus');
     
     Route::get('/prokom/kelengkapandokumen/p/{id}', 'kelengkapandokumenController@print' )-> name('kelengkapan-dokumen-print') ;
     Route::get('/prokom/kelengkapandokumen/{id}', 'kelengkapandokumenController@detail' )-> name('kelengkapan-dokumen-detail') ;
+    
+    //prokom view with get id
+    Route::get('/prokom/print/{id}', 'prokomController@print' ) -> name('prokomF1-print');
     Route::post('prokom/update/{id}', 'prokomController@update' ) -> name('prokomF1-update');
     Route::get('/prokom/detail/{id}', 'prokomController@detail' ) -> name('prokomF1-detail');
     Route::get('/prokom/---------------------------------------------------------------------------------------------------------------------/{id}', 'prokomController@hapus' ) -> name('prokomF1-hapus');

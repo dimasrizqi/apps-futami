@@ -12,25 +12,23 @@
                 <table class="table table-bordered table-striped">
                     <tr>
                         <th width="50px">NO.</th>
-                        <th colspan="2" style="text-align: center">No Proposal</th>
-                        
-                        <th>L1. Cost Sheet</th>
+                        <th style="text-align: center" colspan="2">No Proposal</th>
+                        <th >L1. Cost Sheet</th>
                         <th>Kelengkapan Dokumen</th>
                     </tr>
                     @foreach ($data_prokomf1 ?? '' as $no => $datanya)
                         <tr>
                             <td> {{ $no + 1 }} </td>
-                            <td><a href="{{ route('prokomF1-detail',$datanya->id) }}">{{ $datanya->nomor_proposal }}</a></td>
+                            <td style="text-align: center"><b>{{ $datanya->nomor_proposal }}</b></td>
                             <td>
-                                @if ($message = Session::get('grupnya') == '1')
-                                <a href="{{ route('prokomF1-print', $datanya->id) }}" class="badge badge-info">Print</a>
-                                    <a href="{{ route('prokomF1-hapus', $datanya->id) }}"
-                                        class="badge badge-danger">Hapus</a>
-                                        
-                                @endif
-                                
+                            <a href="{{ route('prokomF1-print', $datanya->id) }}" class="badge badge-info">Print</a>
+                            <a href="{{ route('prokomF1-detail',$datanya->id) }}" class="badge badge-warning">Edit</a>
+                            @if ($message = Session::get('grupnya') == '1')
+                                <a href="{{ route('prokomF1-hapus', $datanya->id) }}"
+                                    class="badge badge-danger">Hapus</a>
+                                    
+                            @endif
                             </td>
-                            
                             <td>
                                 @if ($datanya->l1_cost_sheet=="") 
                                     <a href="{{route('prokomF1-tambah-chost-sheet')}}?no_proposal={{$datanya->nomor_proposal}}" class="badge badge-success">+</a> 
