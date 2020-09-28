@@ -23,7 +23,6 @@
                             <td>{{ $datanya->jenis_program }}</td>
                             <td>
                                 <a href="#" class="btn btn-success">Edit</a>
-                                <a href="#" class="btn btn-info">Ketentuan Klaim</a>
                                 @if ($message = Session::get('grupnya') == '1')
                                     <form action="{{ route('prokomF1-jenis-program-hapus', $datanya->id) }}" method="post"
                                         class="d-inline">

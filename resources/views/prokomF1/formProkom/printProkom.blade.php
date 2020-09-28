@@ -188,7 +188,15 @@
 					</td>
                 </tr>
                 <tr>
-                    <td colspan="7">Ketentuan Prosedur Klaim : </td>
+                    <td colspan="7">Ketentuan & Prosedur Klaim : 
+                        <br>
+                        @php
+                            $i = 1 ;
+                        @endphp 
+                        @foreach ($ketentuan_klaim->where('jenis_program', $datanya->jenis_program) as  $item)
+                        @php echo $i++; @endphp. {{ $item->name }}<br>
+                        @endforeach	
+                    </td>
 
                 </tr>
                 <tr>

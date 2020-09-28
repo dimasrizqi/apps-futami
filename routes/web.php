@@ -32,6 +32,7 @@ Route::get('/logout', 'otentikasi\OtentikasiController@logout') -> name('logout'
 
 //login group midleware
 Route::group(['middleware' => 'auth'], function () {
+    Route::resource('ketentuanklaim','prokomKetentuanKlaimController');
     Route::get('/home', function () {
         return view('home');
     });

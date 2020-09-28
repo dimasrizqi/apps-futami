@@ -62,6 +62,10 @@ class prokomController extends Controller
             ->get();
         $klaim=DB::table('klaim_tagihan_ke')
             ->get();
+        $ketentuan_klaim=DB::table('ketentuan_klaim')
+            // ->where('jenis_program'->$data_prokomf1[0]->jenis_program)
+            ->get();
+        // dd($data_prokomf1[0]->jenis_program);
 
         //Download as pdf
         $pdf = \PDF::setOptions(['isRemoteEnabled' => true])
@@ -71,6 +75,7 @@ class prokomController extends Controller
                 'data_channel_program'=>$data_channel_program,
                 'creator'=>$creator,
                 'klaim'=>$klaim,
+                'ketentuan_klaim'=>$ketentuan_klaim,
             ])
             ->setPaper('a4', 'potrait');
         // return view('prokomF1.formProkom.printProkom', [
