@@ -13,11 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// give blank page
-Route::get('/', function () {
-    return 'opps...';
-});
-
 // Route::match(['get', 'post'],'/tambahmulti', function () {
 //     return view('tambahmulti');
 // });
@@ -36,7 +31,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/home', function () {
         return view('home');
     });
+    Route::get('/', function () {
+        return view('home');
+    });
     // tambah user
+    Route::get('/lihatuser', 'otentikasi\OtentikasiController@lihatuser' )-> name('lihat-user') ;
     Route::get('/tambahuser', 'otentikasi\OtentikasiController@tambah' )-> name('tambah-user') ;
     Route::post('/tambahuser/simpan', 'otentikasi\OtentikasiController@simpan') -> name('tambah-user-simpan');
     //profile user
