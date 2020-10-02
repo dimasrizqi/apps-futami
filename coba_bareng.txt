@@ -1,3 +1,8 @@
 radja rizqi 
+<<<<<<< HEAD
 Nandi
 Wildan
+=======
+
+Diwangga Dafa Alkautsar
+>>>>>>> dc82735d9e0f11ef0d54e963acb496c46e2f4c20
