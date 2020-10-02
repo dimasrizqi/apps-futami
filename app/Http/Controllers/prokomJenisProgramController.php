@@ -31,4 +31,7 @@ class prokomJenisProgramController extends Controller
             $request->jenis_program]);
         return redirect()->route('prokomF1-index-jenis-program')->with('Jenis program ditambahkan');
     }
+
+    
+
 }
