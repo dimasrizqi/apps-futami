@@ -1,11 +1,11 @@
-radja rizqi 			  |
-Nandi					  |
-Wildan   				  |
-<<<<<<< HEAD			  |
-Diwangga Dafa Alkautsar   |
-Test Cobacoba			  |
-Hallo Semua TEST          |
-==========================|
-DIWANGGA 				  |
-==========================|
+radja rizqi 			  |					  |
+Nandi					  |					  |
+Wildan   				  |	   	[]		[]	  |
+<<<<<<< HEAD			  |					  |
+Diwangga Dafa Alkautsar   |			,		  |
+Test Cobacoba			  |					  |
+Hallo Semua TEST          |					  |
+==========================|===================|
+DIWANGGA 				  |					  |
+==========================|===================|
 
