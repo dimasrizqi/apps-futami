@@ -18,13 +18,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>* Ketentuan Klaim</label>
-                                        <textarea  placeholder="Masukan Ketentuan Klaim" name="name" class="form-control"style="height: 100px"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                   
+                                    
                                     <div class="form-group">
                                         <label>* Jenis Program</label><br>
                                         <select class="form-control" name="jenis_program" id="jenis_program">
@@ -33,6 +27,14 @@
                                             <option value="{{ $item->id }}"> {{ $item->jenis_program }}</option>
                                             @endforeach
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group" id="lampirannya">
+                                        <input type="button" name="add" id="add" value="+" name="add" id="add" class="btn btn-success mt-2 mb-2"> 
+                                        <label>* Ketentuan Klaim</label><br>
+                                       1. 
+                                         <textarea  placeholder="Masukan Ketentuan Klaim" name="name[]" class="form-control"style="height: 50px"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -51,6 +53,16 @@
     </div>
 @endsection
 
-@push('page-script')
+@push('page-scripts')
+<script type="text/javascript">
+    $(document).ready(function() {
+        var x = 2;
+        $("#add").click(function() {
+            var html = x + '.' + '<textarea name="name[]" placeholder="Masukan Ketentuan Klaim" class="form-control" style="height: 50px"></textarea><br>'
+            $("#lampirannya").append(html);
+            x++;
+        });
+    });
 
+</script>
 @endpush

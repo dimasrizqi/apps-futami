@@ -8,8 +8,9 @@ use Illuminate\Support\Facades\DB;
 class prokomKetentuanKlaimController extends Controller
 {
     public function index(){
-        $parameter_uji = DB::table('ketentuan_klaim')->orderBy('name','ASC')->get();
-        return view('prokomF1.ketentuanklaim.index',['parameter_uji' => $parameter_uji]);
+        $jenis_program = DB::table('jenis_program')->orderBy('jenis_program','ASC')->get();
+        $ketentuan_klaim = DB::table('ketentuan_klaim')->orderBy('jenis_program','ASC')->get();
+        return view('prokomF1.ketentuanklaim.index',['ketentuan_klaim' => $ketentuan_klaim,'jenis_program' => $jenis_program]);
         
     }
     public function create(){
@@ -19,12 +20,17 @@ class prokomKetentuanKlaimController extends Controller
        
    }
    public function store(Request $request){
-    $data_insert[] = array(
-        'name' => $request->name,
-        'jenis_program' => $request->jenis_program,
-    );
+    $name = $request->name;
+    for($count = 0; $count < count($name); $count++){
+        $data = array(
+            'name' => $name[$count],
+            'jenis_program' => $request->jenis_program,
+        );
+        $insert_data[] = $data; 
+    }
+    DB::table('ketentuan_klaim')->insert($insert_data);
 
-    DB::table('ketentuan_klaim')->insert( $data_insert);
+    
     return Redirect()->route('ketentuanklaim.index') -> with('success','berhasil menambah data');
     }
 
