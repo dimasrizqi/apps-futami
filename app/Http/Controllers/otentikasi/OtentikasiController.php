@@ -18,7 +18,7 @@ class OtentikasiController extends Controller
         return view('otentikasi.index',['datauser'=>$datauser]);
     }
     public function index(){
-        return view('otentikasi.index');
+        return view('otentikasi.login');
     }
     public function login(request $request){
      
