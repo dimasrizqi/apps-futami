@@ -1,6 +1,11 @@
-radja rizqi 
-Nandi
-Wildan
-Diwangga Dafa Alkautsar
-Test Cobacoba
-Hallo Semua TEST
+radja rizqi 			  |
+Nandi					  |
+Wildan   				  |
+<<<<<<< HEAD			  |
+Diwangga Dafa Alkautsar   |
+Test Cobacoba			  |
+Hallo Semua TEST          |
+==========================|
+DIWANGGA 				  |
+==========================|
+
