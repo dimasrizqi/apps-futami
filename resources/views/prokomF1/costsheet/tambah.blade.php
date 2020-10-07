@@ -77,7 +77,7 @@
                                         <input type='number' name="biaya[]" class="form-control txtCal" placeholder="masukan budget dalam bentuk angka" />
                                     </div>
                                 </div>
-                                <div class="col-5">
+                                <div class="col-6">
                                     <div class="form-group" >
                                         <input type="button" name="add" id="add" value="+" class="btn btn-success">
                                     </div>
@@ -104,10 +104,6 @@
 
                         </div>
 
-                    </form>
-                    <form id="order_form">
-                    <input type="number" id="qty" />
-                    <input type="text" id="result"/>
                     </form>
                 </div>
 
@@ -142,7 +138,7 @@
 <script type="text/javascript">
         $(document).ready(function() {
             var html =
-                '<div class="col-3"><div class="form-group"><input name="name[]" class="form-control"  placeholder="masukan rincian budget"/></div></div><div class="col-md-3"><div class="form-group"><input type="number" placeholder="masukan budget dalam bentuk angka" name="biaya[]" class="form-control txtCal"/></div></div><div class="col-md-6"><div class="form-group"><input type="button" name="remove" id="remove" value="-" class="btn btn-danger"></div></div>';
+                '<div class="col-3 tambahan"><div class="form-group"><input name="name[]" class="form-control"  placeholder="masukan rincian budget"/></div></div><div class="col-md-3 tambahan"><div class="form-group"><input type="number" placeholder="masukan budget dalam bentuk angka" name="biaya[]" class="form-control txtCal"/></div></div><div class="col-md-6 tambahan"><div class="form-group"><input type="button" name="remove" id="remove" value="-" class="btn btn-danger tambahan"></div></div>';
             var max = 20;
             var x = 2;
 
@@ -156,9 +152,9 @@
             });
 
             $("#biayanya").on('click', '#remove', function() {
-                // $(this).closest('div').remove();
-                $('#tambahan').remove();
-                x--;
+                $(this).closest('div').remove();
+                $('.tambahan').remove();
+
             });
 
         });
