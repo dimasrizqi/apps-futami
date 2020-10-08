@@ -157,31 +157,6 @@
     });
 </script>
 <script type="text/javascript">
-<<<<<<< HEAD
-        $(document).ready(function() {
-            var html =
-                '<div class="col-3 tambahan"><div class="form-group"><input name="name[]" class="form-control"  placeholder="masukan rincian budget"/></div></div><div class="col-md-3 tambahan"><div class="form-group"><input type="number" placeholder="masukan budget dalam bentuk angka" name="biaya[]" class="form-control txtCal"/></div></div><div class="col-md-6 tambahan"><div class="form-group"><input type="button" name="remove" id="remove" value="-" class="btn btn-danger tambahan"></div></div>';
-            var max = 20;
-            var x = 2;
-
-            $("#add").click(function() {
-                if (x <= max) {
-                    $("#biayanya").append(html);
-                    x++;
-                }else{
-                    alert("dah maximal gan");
-                }
-            });
-
-            $("#biayanya").on('click', '#remove', function() {
-                $(this).closest('div').remove();
-                $('.tambahan').remove();
-
-            });
-
-        });
-
-=======
 // Ini buat elemennya, lebih bagus kalo pake WebComponent
 // Pake Polymer LitHTML juga bisa
 const entry = `
@@ -254,6 +229,5 @@ function rerender() {
         //         x--;
         //     });
         // });
->>>>>>> 04549f65948015f0efefbd1bec8cc8fe00719123
     </script>
 @endpush
