@@ -178,13 +178,11 @@ const entry = `
     </div>
 </div>    
 `
-
 function stringToHtml(stringHtml) {
   const temp = document.createElement('div')
   temp.innerHTML = stringHtml
   return temp.firstElementChild
 }
-
 function createEntry(id) {
   const entryEl = stringToHtml(entry)
   entryEl.querySelector('button').addEventListener('click', () => {
@@ -193,17 +191,14 @@ function createEntry(id) {
   })
   return entryEl
 }
-
 function addEntry(id, element) {
   entries.set(id, element)
   rerender()
 }
-
 function removeEntry(id) {
   entries.delete(id)
   rerender()
 }
-
 const parentEl = document.querySelector('#root')
 const buttonTambah = document.querySelector('#tambah')
 const entries = new Map()
@@ -211,18 +206,15 @@ let counter = 1
 buttonTambah.addEventListener('click', () =>
   addEntry(counter, createEntry(counter++))
 )
-
 function rerender() {
   parentEl.innerHTML = ''
   entries.forEach(value => parentEl.appendChild(value))
 }
-
         // $(document).ready(function() {
         //     var html =
         //         '<div class="col-3"><div class="form-group"><input name="name[]" class="form-control"  placeholder="masukan rincian budget"/></div></div><div class="col-md-3"><div class="form-group"><input type="number" placeholder="masukan budget dalam bentuk angka" name="biaya[]" class="form-control txtCal"/></div></div><div class="col-md-6"><div class="form-group"><input type="button" name="remove" id="remove" value="-" class="btn btn-danger"></div></div>';
         //     var max = 20;
         //     var x = 2;
-
         //     $("#add").click(function() {
         //         if (x <= max) {
         //             $("#biayanya").append(html);
@@ -231,14 +223,11 @@ function rerender() {
         //             alert("dah maximal gan");
         //         }
         //     });
-
         //     $("#biayanya").on('click', '#remove', function() {
         //         // $(this).closest('div').remove();
         //         $('#tambahan').remove();
         //         x--;
         //     });
-
         // });
-
     </script>
 @endpush

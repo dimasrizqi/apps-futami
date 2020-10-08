@@ -47,7 +47,7 @@
         @foreach ($data_prokomf1 as $no => $datanya)
             <tbody>
                 <tr >
-                    <td colspan="2" rowspan="4" align="center"><img src="{{ asset('/assets/img/SavoriaLogo.png') }}"
+                    <td colspan="2" rowspan="4" align="center"><<img src="savoria.jpg"width="100px"
                             width="100PX">
                     </td>
                     <td colspan="4" style=" text-align: center; "><b> PT SAVORIA KREASI RASA</b></td>
@@ -170,11 +170,11 @@
                 </tr>
                 <tr>
                     <td colspan="7">Klaim Tagihan Ke :
-						@foreach ($klaim->where('id', $datanya->klaim_tagihan_ke) as $item)
+                        @foreach ($klaim->where('id', $datanya->klaim_tagihan_ke) as $item)
                             {{ $item->klaim_tagihan_ke }}
-                        @endforeach	
-						
-					</td>
+                        @endforeach 
+                        
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="7">Metode Klaim : {{ $datanya->metode_klaim }}</td>
@@ -184,8 +184,8 @@
                 </tr>
                 <tr>
                     <td colspan="7">Tanggal Batas Klaim : 
-						{{ \Carbon\Carbon::parse($datanya->batas_akhir_klaim)->locale('id')->isoFormat('DD MMMM Y') }}
-					</td>
+                        {{ \Carbon\Carbon::parse($datanya->batas_akhir_klaim)->locale('id')->isoFormat('DD MMMM Y') }}
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="7">Ketentuan & Prosedur Klaim : 
@@ -195,7 +195,7 @@
                         @endphp 
                         @foreach ($ketentuan_klaim->where('jenis_program', $datanya->jenis_program) as  $item)
                         @php echo $i++; @endphp. {{ $item->name }}<br>
-                        @endforeach	
+                        @endforeach 
                     </td>
 
                 </tr>
