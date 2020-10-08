@@ -13,15 +13,14 @@ use App\User;
 
 class OtentikasiController extends Controller
 {
+    public function index(){
+        return view('otentikasi.login');
+    }
     public function lihatuser(){
         $datauser = DB::table('users')->orderBy('name','ASC')->get();
         return view('otentikasi.index',['datauser'=>$datauser]);
     }
-    public function index(){
-        return view('otentikasi.index');
-    }
     public function login(request $request){
-     
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             $name = Auth::user()->name;
             $grup = Auth::user()->grup;
