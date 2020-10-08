@@ -60,14 +60,13 @@ class costsheetController extends Controller
       public function print(Request $request,$id){
         $avg_penjualan = DB::table('cost_sheet')->where('no_proposal', $request->no_proposal)->first();
         $target = DB::table('cost_sheet')->where('no_proposal', $request->no_proposal)->first();
-        $biaya = DB::table('rincian_budget')->where('no_proposal', $request->no_proposal)->first();
-
+        $rincian = DB::table('rincian_budget')->where('no_proposal', $request->no_proposal)->get();
         //Download as pdf
         $pdf = \PDF::setOptions(['isRemoteEnabled' => true])
             ->loadView('prokomF1.costsheet.printCosheet', [
                'avg_penjualan' => $avg_penjualan,
                'target' => $target,
-               'biaya' => $biaya,
+               'rincian' => $rincian,
             ])
             ->setPaper('a4', 'potrait');
         // return view('prokomF1.formProkom.printProkom', [
