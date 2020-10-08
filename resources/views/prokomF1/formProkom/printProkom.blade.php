@@ -2,13 +2,11 @@
 <html>
 
 <head>
+    
     <style>
         @page {
             margin: 0.2cm 0.2cm 0.2cm 0.2cm;
         }
-
-        
-
         td img {
             /* display: block; */
             margin-left: 0;
@@ -17,7 +15,6 @@
             margin-bottom: 0;
 
         }
-
         table {
             font-family: 'Times New Roman', Times, serif, sans-serif;
             border-collapse: collapse;
@@ -39,6 +36,7 @@
         }
 
     </style>
+    <title>PRINT FORM PROKOM</title>
 </head>
 
 <body>
