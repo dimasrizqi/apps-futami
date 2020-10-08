@@ -26,7 +26,7 @@
                         <form action="{{ route('ketentuanklaim.update',$item->id) }}" method="POST">
                         @method('PUT')
                         <label for="">Nama Pengajuan Klaim</label><br>
-                        <input type="text" value="{{$item->name}}" name="name" class="form-control"><br>
+                        <textarea   name="name" class="form-control" style="height: 100px">{{$item->name}}</textarea><br>
                         <div class="form-group">
                             <label>* Jenis Program</label>
                             <select class="form-control" name="jenis_program" id="jenis_program">

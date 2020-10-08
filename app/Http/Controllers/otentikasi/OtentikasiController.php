@@ -20,6 +20,12 @@ class OtentikasiController extends Controller
         $datauser = DB::table('users')->orderBy('name','ASC')->get();
         return view('otentikasi.index',['datauser'=>$datauser]);
     }
+<<<<<<< HEAD
+=======
+    public function index(){
+        return view('otentikasi.login');
+    }
+>>>>>>> 04549f65948015f0efefbd1bec8cc8fe00719123
     public function login(request $request){
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             $name = Auth::user()->name;
