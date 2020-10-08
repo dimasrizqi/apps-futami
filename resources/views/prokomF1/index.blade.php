@@ -34,7 +34,7 @@
                                     <a href="{{route('prokomF1-tambah-chost-sheet')}}?no_proposal={{$datanya->nomor_proposal}}" class="badge badge-success">+</a> 
                                 @else
                                 <a href="" class="badge badge-info">edit</a> 
-                                <a href="" class="badge badge-info">print</a> 
+                                <a href="{{ route('costsheet-print',$datanya->id )}}?no_proposal={{$datanya->nomor_proposal}}" class="badge badge-info">print</a> 
                                 @endif
                             </td>
                             <td>

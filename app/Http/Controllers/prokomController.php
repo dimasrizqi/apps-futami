@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+set_time_limit(0);
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Session;
+use PDF;
 
 class prokomController extends Controller
 
@@ -65,11 +66,13 @@ class prokomController extends Controller
         $ketentuan_klaim=DB::table('ketentuan_klaim')
             // ->where('jenis_program'->$data_prokomf1[0]->jenis_program)
             ->get();
-        // dd($data_prokomf1[0]->jenis_program);
+
+        // $pdf = PDF::loadview('prokomF1.formProkom.printProkom',['pegawai'=>$data_prokomf1]);
+        // return $pdf->download('laporan-pegawai-pdf.pdf');
 
         //Download as pdf
-        $pdf = \PDF::setOptions(['isRemoteEnabled' => true])
-            ->loadView('prokomF1.formProkom.printProkom', [
+        // $pdf = \PDF::setOptions(['isRemoteEnabled' => true])
+            $pdf = PDF::loadView('prokomF1.formProkom.printProkom', [
                 'data_prokomf1' => $data_prokomf1,
                 'data_jenis_program'=>$data_jenis_program,
                 'data_channel_program'=>$data_channel_program,
@@ -87,7 +90,7 @@ class prokomController extends Controller
         // ]);
         //stream pdf file name as nomor proposal
         return $pdf->stream($no_proposal.".pdf");
-        // return $pdf->download('prokomF1.pdf');
+        // return $pdf->download('prokomF1-pdf');
     }
     
     

@@ -21,7 +21,6 @@ class OtentikasiController extends Controller
         return view('otentikasi.login');
     }
     public function login(request $request){
-     
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
             $name = Auth::user()->name;
             $grup = Auth::user()->grup;
