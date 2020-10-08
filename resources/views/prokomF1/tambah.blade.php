@@ -41,7 +41,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>* Nomor Proposal</label>
-                                        <input type="text" id="myText" name="nomor_proposal" class="form-control">
+                                        <input type="text" id="myText" name="nomor_proposal" value="{{ $no_sample }}"  class="form-control" required readonly="">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -112,7 +112,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>* Region Program</label>
-                                        <input type="text" name="region_program" class="form-control">
+                                        <input type="text" id="region_program" name="region_program" class="form-control">
                                     </div>
                                 </div>
 

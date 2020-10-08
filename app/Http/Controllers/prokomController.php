@@ -91,15 +91,22 @@ class prokomController extends Controller
     }
     
     
-    public function tambah(){
+    public function tambah(Request $request){
+        $reg = $request->input('region_program');
+        $collections = DB::table('prokomf1')->max('id')+1;
+        $angka = '4521';
+        $no_sample = $reg."/".$angka."/".sprintf("%04s", $collections);
+
+
         $data_jenis_program = DB::table('jenis_program')->where('status','1')->orderBy('jenis_program','asc')->get();
         $data_channel_program = DB::table('channel_program')->where('status','1')->orderBy('channel_program','asc')->get();
         $klaim = DB::table('klaim_tagihan_ke')->get();
             return view('prokomF1.tambah',[
             'data_jenis_program'=>$data_jenis_program,
             'data_channel_program'=>$data_channel_program,
-            'klaim_tagihan_ke'=>$klaim
-        ]);
+            'klaim_tagihan_ke'=>$klaim,
+            ],compact('no_sample'));
+        
     }
 
     public function update(Request $request){
@@ -114,7 +121,7 @@ class prokomController extends Controller
     ->insert(array(
         'kepada_yth'=> $request->kepada_yth, 
         'nomor_proposal'=>$request->nomor_proposal, 
-        'kode_rkb'=>$request->nomor_proposal, 
+        'kode_rkb'=>$request->kode_rkb, 
         'nama_program'=>$request->nama_program, 
         'di_ketahui'=>$request->di_ketahui, 
         'brand_item'=>$request->brand_item, 
@@ -160,8 +167,14 @@ class prokomController extends Controller
         }
 
     public function simpan(Request $request){
+        $reg = $request->input('region_program');
+        $collections = DB::table('prokomf1')->max('id')+1;
+        $angka = '4521';
+        $no_sample = $reg."/".$angka."/".sprintf("%04s", $collections);
+
         $revisi_ke = '0';
         $status = '1';
+
         // return $request;
         DB::insert('insert into prokomf1 (
             kepada_yth, 
@@ -202,7 +215,7 @@ class prokomController extends Controller
              ?,?)',
 
          [$request->kepada_yth, 
-         $request->nomor_proposal, 
+         $no_sample, 
          $request->kode_rkb, 
          $request->nama_program, 
          $request->di_ketahui, 
