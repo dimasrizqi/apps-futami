@@ -68,6 +68,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('prokom/costsheet/tambah', 'costsheetController@tambah' ) -> name('prokomF1-tambah-chost-sheet');
     Route::post('prokom/costsheet/simpan', 'costsheetController@simpan' ) -> name('prokomF1-simpan-chost-sheet');
     Route::get('/prokom/costsheet/p/{id}', 'costsheetController@print' )-> name('costsheet-print') ;
+    Route::POST('prokom/costsheet/update/{id}', 'costsheetController@update' ) -> name('costsheet-update');
+    Route::get('prokom/costsheet/detail/{id}', 'costsheetController@detail' ) -> name('costsheet-detail');
     
     //Kelengkapan dokumen
     Route::get('/prokom/kelengkapandokumen', 'kelengkapandokumenController@index' )-> name('kelengkapan-dokumen-index') ;
@@ -75,6 +77,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/prokom/kelengkapandokumen/simpan', 'kelengkapandokumenController@simpan' )-> name('kelengkapan-dokumen-simpan') ;
     Route::get('/prokom/kelengkapandokumen/lampiran', 'kelengkapandokumenController@tambahlampiran' )-> name('kelengkapan-dokumen-tambah-lampiran') ;
     Route::post('/prokom/kelengkapandokumen/simpanlampiran', 'kelengkapandokumenController@simpanlampiran' )-> name('kelengkapan-dokumen-simpan-lampiran') ;
+    Route::get('/prokom/kelengkapandokumen/p/{id}', 'kelengkapandokumenController@print' )-> name('kelengkapandokumen-print') ;
+    Route::POST('prokom/kelengkapandokumen/update/{id}', 'kelengkapandokumenController@update' ) -> name('kelengkapan-dokumen-update');
+    Route::get('prokom/kelengkapandokumen/detail/{id}', 'kelengkapandokumenController@detail' ) -> name('kelengkapan-dokumen-detail');
     
     Route::delete('/prokom/jenisprogram/hapus/{id}', 'prokomJenisProgramController@hapus' ) -> name('prokomF1-jenis-program-hapus');
     Route::delete('/prokom/channelprogram/hapus/{id}', 'prokomChannelController@hapus' ) -> name('prokomF1-channel-program-hapus');

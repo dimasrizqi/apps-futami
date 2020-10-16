@@ -33,7 +33,7 @@
                                 @if ($datanya->l1_cost_sheet=="") 
                                     <a href="{{route('prokomF1-tambah-chost-sheet')}}?no_proposal={{$datanya->nomor_proposal}}" class="badge badge-success">+</a> 
                                 @else
-                                <a href="" class="badge badge-info">edit</a> 
+                                <a href="{{ route('costsheet-detail',$datanya->id )}}?no_proposal={{$datanya->nomor_proposal}}" class="badge badge-info">edit</a> 
                                 <a href="{{ route('costsheet-print',$datanya->id )}}?no_proposal={{$datanya->nomor_proposal}}" class="badge badge-info">print</a> 
                                 @endif
                             </td>
@@ -41,7 +41,7 @@
                                 @if ($datanya->kelengkapan_dokumen=="") 
                                 <a href="{{route('kelengkapan-dokumen-tambah')}}?no_proposal={{$datanya->nomor_proposal}}" class="badge badge-success">+</a> 
                                 @else
-                                <a href="{{route('kelengkapan-dokumen-detail',$datanya->kelengkapan_dokumen)}}" class="badge badge-info">edit</a> 
+                                <a href="{{ route('kelengkapan-dokumen-detail',$datanya->id )}}?no_proposal={{$datanya->nomor_proposal}}" class="badge badge-info">edit</a> 
                                 <a href="{{route('kelengkapan-dokumen-print',$datanya->kelengkapan_dokumen)}}" class="badge badge-info">print</a> 
                             @endif
                             </td>

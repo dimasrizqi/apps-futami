@@ -4,6 +4,7 @@
 @section('content')
     <section class="section">
         <div class="section-header">
+            <a href="{{ route('prokomF1-index')}}" class="btn btn-success mr-5">Kembali</a>
             <h1>Input Kelengkapan Dokumen Untuk Prokom Sales & Commercial</h1>
         </div>
     </section>
@@ -85,11 +86,11 @@
                                 </div>
 
                                 
-                                <div class="col-md-12">
+                                <div class="col-md-12" id="biayanya">
                                     <label>8. Lampiran</label><br>
                                     <u><b>Deskripsi Lampiran: </b></u><br>                                        
-                                    <input type="button" name="add" id="add" value="+" name="add" id="add" class="btn btn-success mt-2 mb-2"> 
-
+                                    <input type="button" name="add" id="add" value="+"  class="btn btn-success mt-2 mb-2">
+                                    <input type="button" id="hapus" value="-" name="hapus" class="btn btn-danger mt-2 mb-2">
                                     <div class="form-group" id="lampirannya">
                                         Lampiran 1 
                                         <textarea name="lampiran[]" class="form-control" style="height: 100px"></textarea><br>
@@ -121,8 +122,7 @@
 
         $("#add").click(function() {
             if (x <= max) {
-                var html = 'lampiran ' + x +
-            '<textarea name="lampiran[]" class="form-control" style="height: 100px"></textarea><br>'
+                var html = '<div class="form-group" id="remove">lampiran' + x + '<textarea name="lampiran[]" class="form-control" style="height: 100px"></textarea><br></div>'
                 $("#lampirannya").append(html);
                 x++;
             }else{
@@ -130,8 +130,12 @@
             }
         });
 
-        $("#biayanya").on('click', '#remove', function() {
-            $('#tambahan').remove();
+        $("#hapus").click(function() {
+            $('#remove').remove();
+            if ( x == 2) {
+                alert("Tidak bisa hapus lagi")
+                x++;
+            }
             x--;
         });
 
