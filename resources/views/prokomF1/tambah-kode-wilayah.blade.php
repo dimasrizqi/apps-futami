@@ -1,10 +1,10 @@
 @extends('layouts.master')
-@section('title', 'Tambah Metode Klaim')
+@section('title', 'Tambah Kode Wilayah')
 
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Input Metode Klaim Prokom Form 1</h1>
+            <h1>Input Wilayah Untuk Prokom Sales & Commercial</h1>
         </div>
     </section>
     <div class="section-body">
@@ -12,14 +12,20 @@
             <div class="col-12 col-md-12 col-lg-12">
                 <div class="card">
 
-                    <form action="{{ route('prokomF1-simpan-metode-klaim') }}" method="POST">
+                    <form action="{{ route('prokomF1-simpan-kode-wilayah') }}" method="POST">
                         @csrf
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>* Metode Klaim</label>
-                                        <input type="text" placeholder="Input Metode Klaim" name="metode_klaim" class="form-control">
+                                        <label>* Nama Wilayah </label>
+                                        <input type="text" placeholder="Input Nama Wilayah" name="wilayah" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>* Kode/singkatan Wilayah</label>
+                                        <input type="text" placeholder="Kode/singkatan wilayah" name="kode_wilayah" class="form-control">
                                     </div>
                                 </div>
                                 
