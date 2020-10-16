@@ -75,34 +75,37 @@
                                     </div>
                                 </div>
                             </div>
-
-                            {{-- start biaya --}}
                             <label><b>Rincian Budget Yang Dikeluarkan: </b> </label>
-                            @foreach($rincian as $key => $rincian_data)
-                            <div class="row"  id="biayanya">
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <input type="text" name="name[]" class="form-control" value="{{$rincian_data->name}}"  placeholder="masukan rincian budget"/>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-group">
-                                        <input type='number' name="biaya[]" class="form-control txtCal" value="{{$rincian_data->biaya}}" placeholder="masukan budget dalam bentuk angka" />
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="form-group" >
-                                        <input type="button" name="add" id="tambah" value="+" class="btn btn-success">
-                                    </div>
-                                </div>
+                            <div class="table-responsive">  
+                                <table class="table table-bordered" id="dynamic_field">  
+                                    <tr>  
+                                        <td>
+                                            <input type="text" name="name[]" class="form-control" value="{{$rincian[0]->name}}"  placeholder="masukan rincian budget"/>
+                                        </td>  
+                                         <td>
+                                            <input type='number' name="biaya[]" class="form-control txtCal" value="{{$rincian[0]->biaya}}"  placeholder="masukan budget dalam bentuk angka" />
+                                        </td>  
+                                        <td>
+                                            <button type="button" name="add" id="add" class="btn btn-success">+</button>
+                                        </td>  
+                                    </tr>  
+                                    @foreach($rincian as $key => $rincian_data)
+                                        @if($key > 0)
+                                        <tr id="row{{$key}}">  
+                                            <td>
+                                                <input type="text" name="name[]" class="form-control" value="{{$rincian_data->name}}"  placeholder="masukan rincian budget"/>
+                                            </td>  
+                                             <td>
+                                                <input type='number' name="biaya[]" class="form-control txtCal" value="{{$rincian_data->biaya}}" placeholder="masukan budget dalam bentuk angka" />
+                                            </td>  
+                                            <td>
+                                               <button type="button" name="remove" id="{{$key}}" class="btn btn-danger btn_remove">-</button>
+                                            </td>  
+                                        </tr>  
+                                        @endif
+                                    @endforeach
+                                </table>  
                             </div>
-                            @endforeach
-                            <div id="root">
-                            <br>
-                            </div>
-                            
-                            {{-- end biaya --}}
-
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="form-group" >
@@ -174,77 +177,31 @@
     });
 </script>
 <script type="text/javascript">
-// Ini buat elemennya, lebih bagus kalo pake WebComponent
-// Pake Polymer LitHTML juga bisa
-const entry = `
-<div class="row">
-    <div class="col-3">
-        <div class="form-group">
-            <input name="name[]" class="form-control"  placeholder="masukan rincian budget"/>
-        </div>
-    </div>
-    <div class="col-3">
-        <div class="form-group">
-            <input type="number" id="contoh" placeholder="masukan budget dalam bentuk angka" name="biaya[]" class="form-control txtCal"/>
-        </div>
-    </div>
-    <div class="hapus col-3">
-        <div class="form-group">
-            <button class="btn btn-danger" >-</button>
-        </div>
-    </div>
-</div>    
-`
-function stringToHtml(stringHtml) {
-  const temp = document.createElement('div')
-  temp.innerHTML = stringHtml
-  return temp.firstElementChild
-}
-function createEntry(id) {
-  const entryEl = stringToHtml(entry)
-  entryEl.querySelector('button').addEventListener('click', () => {
-    removeEntry(id)
-    entryEl.remove()
-  })
-  return entryEl
-}
-function addEntry(id, element) {
-  entries.set(id, element)
-  rerender()
-}
-function removeEntry(id) {
-  entries.delete(id)
-  rerender()
-}
-const parentEl = document.querySelector('#root')
-const buttonTambah = document.querySelector('#tambah')
-const entries = new Map()
-let counter = 1
-buttonTambah.addEventListener('click', () =>
-  addEntry(counter, createEntry(counter++))
-)
-function rerender() {
-  parentEl.innerHTML = ''
-  entries.forEach(value => parentEl.appendChild(value))
-}
-        // $(document).ready(function() {
-        //     var html =
-        //         '<div class="col-3"><div class="form-group"><input name="name[]" class="form-control"  placeholder="masukan rincian budget"/></div></div><div class="col-md-3"><div class="form-group"><input type="number" placeholder="masukan budget dalam bentuk angka" name="biaya[]" class="form-control txtCal"/></div></div><div class="col-md-6"><div class="form-group"><input type="button" name="remove" id="remove" value="-" class="btn btn-danger"></div></div>';
-        //     var max = 20;
-        //     var x = 2;
-        //     $("#add").click(function() {
-        //         if (x <= max) {
-        //             $("#biayanya").append(html);
-        //             x++;
-        //         }else{
-        //             alert("dah maximal gan");
-        //         }
-        //     });
-        //     $("#biayanya").on('click', '#remove', function() {
-        //         // $(this).closest('div').remove();
-        //         $('#tambahan').remove();
-        //         x--;
-        //     });
-        // });
-    </script>
+    $(document).ready(function(){      
+      var postURL = "<?php echo url('addmore'); ?>";
+      var i = 1;  
+      var max = 20;
+
+
+      $('#add').click(function(){  
+           i++;  
+           if ( i <= max ) {
+            $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" class="form-control"  placeholder="masukan rincian budget"/></td><td><input type="number" name="biaya[]" class="form-control txtCal" placeholder="masukan budget dalam bentuk angka" /></td><td><button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">-</button></td></tr>');  
+                $("#dynamic_field").append(html);
+                     i++;
+                 }else{
+                    alert("dah maximal gan");
+                 }
+      });  
+      $(document).on('click', '.btn_remove', function(){  
+           var button_id = $(this).attr("id");   
+           $('#row'+button_id+'').remove(); 
+           if (i == 2) {
+            i++
+           } 
+           i--;
+      });  
+
+    });  
+</script>
 @endpush

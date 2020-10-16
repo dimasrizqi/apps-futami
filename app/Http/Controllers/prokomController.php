@@ -37,12 +37,17 @@ class prokomController extends Controller
         $no_proposal=$data_prokomf1[0]->nomor_proposal;
         $creator=DB::table('users')
             ->get();
+        $data_metode = DB::table('metode_klaim')
+            ->where('status','1')
+            ->orderBy('metode_klaim','asc')
+            ->get();
         $klaim=DB::table('klaim_tagihan_ke')
             ->get();
         return view('prokomF1.detail',['data_prokomf1' => $data_prokomf1,
         'data_jenis_program'=>$data_jenis_program,
         'data_channel_program'=>$data_channel_program,
         'creator'=>$creator,
+        'data_metode'=>$data_metode,
         'klaim'=>$klaim]);
     }
 
@@ -95,18 +100,27 @@ class prokomController extends Controller
     
     
     public function tambah(Request $request){
-        $reg = $request->input('region_program');
+        $cc = $request->input('di_ketahui');
+        //$reg = DB::table('users')->where('id',$request->disiapkan_oleh)->get()[0]->kode_wilayah;
+        //$get_kode = DB::table('kode_wilayah')->where('id',$reg)->get()[0]->kode_wilayah;
+        $reg = session()->get('kode_wilayah');
+        $get_kode = DB::table('users')->where('id',$reg)->get();
         $collections = DB::table('prokomf1')->max('id')+1;
-        $angka = '4521';
-        $no_sample = $reg."/".$angka."/".sprintf("%04s", $collections);
+        //$angka = '4521';
+        $no_sample = $get_kode."/".$cc."/".sprintf("%04s", $collections);
+        //dd($get_kode);
 
 
+        $data_kode_wilayah = DB::table('kode_wilayah')->where('status','1')->orderBy('kode_wilayah','asc')->get();
         $data_jenis_program = DB::table('jenis_program')->where('status','1')->orderBy('jenis_program','asc')->get();
         $data_channel_program = DB::table('channel_program')->where('status','1')->orderBy('channel_program','asc')->get();
+        $data_metode = DB::table('metode_klaim')->where('status','1')->orderBy('metode_klaim','asc')->get();
         $klaim = DB::table('klaim_tagihan_ke')->get();
             return view('prokomF1.tambah',[
+            'data_kode_wilayah'=>$data_kode_wilayah,   
             'data_jenis_program'=>$data_jenis_program,
             'data_channel_program'=>$data_channel_program,
+            'data_metode'=>$data_metode,
             'klaim_tagihan_ke'=>$klaim,
             ],compact('no_sample'));
         
@@ -170,10 +184,16 @@ class prokomController extends Controller
         }
 
     public function simpan(Request $request){
-        $reg = $request->input('region_program');
+
+        $cc = $request->input('di_ketahui');
+        $reg = DB::table('users')->where('id',$request->disiapkan_oleh)->get()[0]->kode_wilayah;
+        $get_kode = DB::table('kode_wilayah')->where('id',$reg)->get()[0]->kode_wilayah;
+        //$reg = session()->get('kode_wilayah');
+        //$get_kode = DB::table('users')->where('id',$reg)->get();
         $collections = DB::table('prokomf1')->max('id')+1;
-        $angka = '4521';
-        $no_sample = $reg."/".$angka."/".sprintf("%04s", $collections);
+        //$angka = '4521';
+        $no_sample = $get_kode."/".$cc."/".sprintf("%04s", $collections);
+        //dd($no_sample);
 
         $revisi_ke = '0';
         $status = '1';

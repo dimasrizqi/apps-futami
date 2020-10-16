@@ -33,8 +33,20 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
+                                        <label>Kode Wilayah</label>
+                                        <select class="form-control" name="kode_wilayah" id="kode_wilayah">
+                                           
+                                            <option value=""></option> 
+                                            @foreach ($data_kode_wilayah as $item)
+                                                <option value="{{ $item->id }}"> {{ $item->kode_wilayah}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
                                         <label>* level User</label>
-                                        <select class="form-control" name="channel_program" id="channel_program">
+                                        <select class="form-control" name="grup" id="grup">
                                             <option value=""></option> 
                                             <option value="1">User</option> 
                                             <option value="2">Admin</option> 
@@ -42,6 +54,7 @@
                                         <label><i>password default : 12345678</i></label>
                                     </div>
                                 </div>
+                                
                                 
 
                                 <div class="col-md-12">

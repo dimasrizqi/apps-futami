@@ -27,6 +27,7 @@
                   <li><a>----------------------------</a></li>
                   <li><a class="nav-link" href="{{ route('prokomF1-index-jenis-program')}}">Jenis Program</a></li>
                   <li><a class="nav-link" href="{{ route('prokomF1-index-channel-program')}}">Channel Program</a></li>
+                  <li><a class="nav-link" href="{{ route('prokomF1-index-kode-wilayah')}}">Kode Wilayah</a></li>
                   <li><a class="nav-link" href="{{ route('prokomF1-index-metode-klaim')}}">Metode Klaim</a></li>
                   <li><a class="nav-link" href="{{ route('ketentuanklaim.index')}}">Ketentuan & Prosedur Klaim</a></li>
                   {{-- <li><a class="nav-link" href="">Tujuan Klaim Tagihan</a></li>

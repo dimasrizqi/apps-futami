@@ -57,11 +57,21 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('prokom/channelprogram/tambah', 'prokomChannelController@tambah' ) -> name('prokomF1-tambah-channel-program');
     Route::post('prokom/channelprogram/simpan', 'prokomChannelController@simpan' ) -> name('prokomF1-simpan-channel-program');
     
+    //prokom form kode wilayah
+    Route::get('prokom/kodewilayah/', 'prokomKodeWilayahController@index' ) -> name('prokomF1-index-kode-wilayah');
+    Route::get('prokom/kodewilayah/tambah', 'prokomKodeWilayahController@tambah' ) -> name('prokomF1-tambah-kode-wilayah');
+    Route::post('prokom/kodewilayah/simpan', 'prokomKodeWilayahController@simpan' ) -> name('prokomF1-simpan-kode-wilayah');
+    Route::delete('prokom/kodewilayah/hapus', 'prokomKodeWilayahController@hapus' ) -> name('prokomF1-hapus-kode-wilayah');
+    Route::get('prokom/kodewilayah/edit/{id}', 'prokomKodeWilayahController@edit' ) -> name('prokomF1-edit-kode-wilayah');
+    Route::put('prokom/kodewilayah/edit/{id}', 'prokomKodeWilayahController@update' );
     
     //prokom form metode klaim
     Route::get('prokom/metodeklaim/', 'prokomMetodeKlaimController@index' ) -> name('prokomF1-index-metode-klaim');
     Route::get('prokom/metodeklaim/tambah', 'prokomMetodeKlaimController@tambah' ) -> name('prokomF1-tambah-metode-klaim');
     Route::post('prokom/metodeklaim/simpan', 'prokomMetodeKlaimController@simpan' ) -> name('prokomF1-simpan-metode-klaim');
+    Route::delete('prokom/metodeklaim/hapus', 'prokomMetodeKlaimController@hapus' ) -> name('prokomF1-hapus-metode-klaim');
+    Route::get('prokom/metodeklaim/edit/{id}', 'prokomMetodeKlaimController@edit' ) -> name('prokomF1-edit-metode-klaim');
+    Route::put('prokom/metodeklaim/edit/{id}', 'prokomMetodeKlaimController@update' );
     
     //prokom form Cost Sheet
     Route::get('prokom/costsheet/', 'costsheetController@index' ) -> name('prokomF1-index-chost-sheet');

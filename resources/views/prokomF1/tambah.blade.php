@@ -105,7 +105,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>* Area Program</label>
-                                        <input type="text" name="area_program" class="form-control">
+                                        <input type="text" id="area_program" name="area_program" class="form-control">
                                     </div>
                                 </div>
 
@@ -189,13 +189,14 @@
                                     <div class="form-group">
                                         <label>Metode Klaim</label>
                                         <select class="form-control" name="metode_klaim" id="metode_klaim">
-                                            <option>Potong Faktur Penjualan</option>
-                                            <option>Rafraksi Toko</option>
-                                            <option>Free Good</option>
-                                            <option>Invoice/Tagihan</option>
+                                            <option value=""></option> 
+                                            @foreach ($data_metode as $item)
+                                            <option value="{{ $item->metode_klaim }}"> {{ $item->metode_klaim }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
+
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Faktur Pajak</label>

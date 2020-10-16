@@ -32,21 +32,26 @@ class OtentikasiController extends Controller
     }
     
     public function tambah(){
-        return view('otentikasi.tambah-user');
+        $data_kode_wilayah = DB::table('kode_wilayah')->where('status','1')->orderBy('kode_wilayah','asc')->get();
+        return view('otentikasi.tambah-user', [
+            'data_kode_wilayah'=>$data_kode_wilayah,
+        ]);
     }
     public function simpan(Request $request){
         //dd($request->all());
+        $data_kode_wilayah = DB::table('kode_wilayah')->where('status','1')->orderBy('kode_wilayah','asc')->get();
         DB::table('users')->insert(
             array(
                 'name' => $request->name,
                 'email' => $request->email,
+                'kode_wilayah'=> $request->kode_wilayah,
                 'grup' => $request->grup,
                 'creator' => $request->creator,
                 'password' => bcrypt('12345678'),
-                'remember_token' => $request->_token
+                'remember_token' => $request->_token,
             )
         );
-        return view('otentikasi.tambah-user');
+        return redirect()->route('lihat-user');
     }
     public function profile(){
         $id_user = session()->get('id_user');
