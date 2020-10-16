@@ -56,16 +56,60 @@ class costsheetController extends Controller
         //  return redirect()->back();
          return redirect()->route('prokomF1-index');
     }
-
-      public function print(Request $request,$id){
+    public function detail(Request $request,$id){
+    
+        $cost_sheet = DB::table('cost_sheet')->where('no_proposal',$request->no_proposal)->first();
         $avg_penjualan = DB::table('cost_sheet')->where('no_proposal', $request->no_proposal)->first();
         $target = DB::table('cost_sheet')->where('no_proposal', $request->no_proposal)->first();
         $rincian = DB::table('rincian_budget')->where('no_proposal', $request->no_proposal)->get();
-        //Download as pdf
+        $item_cost = DB::table('item_cost')->orderBy('id','asc')->get();
+        return view('prokomF1.costsheet.detail',['cost_sheet' => $cost_sheet,
+        'avg_penjualan' => $avg_penjualan,
+        'target' => $target,
+        'rincian' => $rincian,
+        'item_cost' => $item_cost,
+            ]);
+    }
+
+    public function update(Request $request,$id){
+    DB::table('cost_sheet')
+              ->where('id', $id)
+              ->update([
+                'item_cost' => $request->item_cost,
+                'avg_penjualan' => $request->avg_penjualan,
+                'target' => $request->target,
+
+            ]);
+
+    DB::table('rincian_budget')->where('no_proposal',$request->no_proposal)->delete();
+
+        $biaya = $request->biaya;
+        $name = $request->name;
+        for($count = 0; $count < count($biaya); $count++){
+            $data = array(
+                'biaya' => $biaya[$count],
+                'creator' => $request->creator,
+                'name' => $name[$count],
+                'no_proposal'=> $request->no_proposal
+            );
+            $insert_data[] = $data; 
+        }
+
+
+        DB::table('rincian_budget')->insert($insert_data);
+
+
+    return redirect()->route('prokomF1-index');
+
+    }
+
+
+      public function print(Request $request,$id){
+        $costsheet = DB::table('cost_sheet')->where('no_proposal', $request->no_proposal)->first();
+        $rincian = DB::table('rincian_budget')->where('no_proposal', $request->no_proposal)->get();
         $pdf = \PDF::setOptions(['isRemoteEnabled' => true])
             ->loadView('prokomF1.costsheet.printCosheet', [
-               'avg_penjualan' => $avg_penjualan,
-               'target' => $target,
+               'costsheet' => $costsheet,
                'rincian' => $rincian,
             ])
             ->setPaper('a4', 'potrait');

@@ -68,6 +68,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('prokom/costsheet/tambah', 'costsheetController@tambah' ) -> name('prokomF1-tambah-chost-sheet');
     Route::post('prokom/costsheet/simpan', 'costsheetController@simpan' ) -> name('prokomF1-simpan-chost-sheet');
     Route::get('/prokom/costsheet/p/{id}', 'costsheetController@print' )-> name('costsheet-print') ;
+    Route::POST('prokom/costsheet/update/{id}', 'costsheetController@update' ) -> name('costsheet-update');
+    Route::get('prokom/costsheet/detail/{id}', 'costsheetController@detail' ) -> name('costsheet-detail');
     
     //Kelengkapan dokumen
     Route::get('/prokom/kelengkapandokumen', 'kelengkapandokumenController@index' )-> name('kelengkapan-dokumen-index') ;
